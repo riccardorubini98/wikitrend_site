@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.84.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Articoli più cercati su Wikipedia per ogni mese #  Qui è presentato il codice python per ottenere le pagine più visitate di Wikipedia inglese per ogni mese da gennaio 2016 a dicembre 2020. Ogni documento è costituito dal mese e anno di riferimento, dalle prime 500 pagine (senza contare pagine proprietarie di Wikipedia non di nostro interesse) più viste in quel periodo e infine la pagina più vista per ciascun giorno di quel mese.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Articoli più cercati per mese" />
+<meta property="og:description" content="Articoli più cercati su Wikipedia per ogni mese #  Qui è presentato il codice python per ottenere le pagine più visitate di Wikipedia inglese per ogni mese da gennaio 2016 a dicembre 2020. Ogni documento è costituito dal mese e anno di riferimento, dalle prime 500 pagine (senza contare pagine proprietarie di Wikipedia non di nostro interesse) più viste in quel periodo e infine la pagina più vista per ciascun giorno di quel mese." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/top_pages/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Articoli più cercati per mese | Wikitrend</title>
+<link rel="manifest" href="/wikitrend_site/manifest.json">
+<link rel="icon" href="/wikitrend_site/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/wikitrend_site/book.min.e935e20bd0d469378cb482f0958edf258c731a4f895dccd55799c6fbc8043f23.css" integrity="sha256-6TXiC9DUaTeMtILwlY7fJYxzGk&#43;JXczVV5nG&#43;8gEPyM="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/wikitrend_site"><img src="/wikitrend_site/wikitrend_logo.svg" alt="Logo" /><span>Wikitrend</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Data Management</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/data_structure/" class="">Dati</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/top_pages/" class=" active">Articoli più cercati per mese</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-67d9e14beb5c9195b060ad752f05072e" class="toggle"  />
+    <label for="section-67d9e14beb5c9195b060ad752f05072e" class="flex justify-between">
+      <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/" class="">Classificazione pagine</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/classifier_code/" class="">Codice Classificatore</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/class_accuracy/" class="">Valutazione Classificatore</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/page_description/" class="">Descrizione pagine</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/wikitrend_site/posts/" >
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/wikitrend_site/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Articoli più cercati per mese</strong>
+
+  <label for="toc-control">
+    
+    <img src="/wikitrend_site/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#articoli-più-cercati-su-wikipedia-per-ogni-mese"><strong>Articoli più cercati su Wikipedia per ogni mese</strong></a>
+      <ul>
+        <li><a href="#carico-funzioni-e-librerie-necessarie"><strong>Carico funzioni e librerie necessarie</strong></a></li>
+        <li><a href="#collegamento-a-mongodb"><strong>Collegamento a MongoDB</strong></a></li>
+        <li><a href="#creo-loop-per-ottenere-le-pagine-più-viste"><strong>Creo loop per ottenere le pagine più viste</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="articoli-più-cercati-su-wikipedia-per-ogni-mese">
+  <strong>Articoli più cercati su Wikipedia per ogni mese</strong>
+  <a class="anchor" href="#articoli-pi%c3%b9-cercati-su-wikipedia-per-ogni-mese">#</a>
+</h1>
+<p>Qui è presentato il codice python per ottenere le pagine più visitate di Wikipedia inglese per ogni mese da gennaio 2016 a dicembre 2020. Ogni documento è costituito dal mese e anno di riferimento, dalle prime 500 pagine (senza contare pagine proprietarie di Wikipedia non di nostro interesse) più viste in quel periodo e infine la pagina più vista per ciascun giorno di quel mese.</p>
+<p>Ciascuna pagina è rappresentata da un documento json il quale ha come attributi il titolo, il page_id di riferimento e il numero di visualizzazioni nell&rsquo;arco temporale di riferimento (mese o giorno a seconda dei casi).</p>
+<p>I dati sono ottenuti tramite l&rsquo;apposita <a href="https://wikitech.wikimedia.org/wiki/Analytics/AQS/Pageviews">API</a> all&rsquo;end point <em>pageviews/top/en.wikipedia</em>.
+Il <em>page_id</em> è ricavato dall&rsquo;API di <em>en.wikipedia</em>.</p>
+<h2 id="carico-funzioni-e-librerie-necessarie">
+  <strong>Carico funzioni e librerie necessarie</strong>
+  <a class="anchor" href="#carico-funzioni-e-librerie-necessarie">#</a>
+</h2>
+<p>Alcune funzioni sono presenti nella repository github del progetto al seguente <a href="https://github.com/riccardorubini98/wikitrend">link</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pip install dnspython
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
+<span style="color:#f92672">import</span> time <span style="color:#66d9ef">as</span> time
+<span style="color:#f92672">from</span> tqdm.notebook <span style="color:#f92672">import</span> tqdm
+<span style="color:#f92672">from</span> requests.exceptions <span style="color:#f92672">import</span> <span style="color:#a6e22e">ConnectionError</span>
+<span style="color:#75715e"># Import github repository</span>
+<span style="color:#960050;background-color:#1e0010">!</span>git clone https:<span style="color:#f92672">//</span>github<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>riccardorubini98<span style="color:#f92672">/</span>wikitrend<span style="color:#f92672">.</span>git
+<span style="color:#f92672">import</span> sys
+sys<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>append(<span style="color:#e6db74">&#34;/content/wikitrend/&#34;</span>)
+<span style="color:#f92672">import</span> toppage_function <span style="color:#66d9ef">as</span> tp
+</code></pre></div><h2 id="collegamento-a-mongodb">
+  <strong>Collegamento a MongoDB</strong>
+  <a class="anchor" href="#collegamento-a-mongodb">#</a>
+</h2>
+<p>Collegamento a MongoDB Atlas e download della collezione contente le pagine più visitate mese per mese.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Connect mongodb atlas</span>
+<span style="color:#f92672">from</span> pymongo <span style="color:#f92672">import</span> MongoClient
+access_token <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+client <span style="color:#f92672">=</span> MongoClient(access_token)
+db <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_database(<span style="color:#e6db74">&#39;wikitrend&#39;</span>)
+record <span style="color:#f92672">=</span> db<span style="color:#f92672">.</span>page_topic <span style="color:#75715e"># new collection for single pages</span>
+</code></pre></div><h2 id="creo-loop-per-ottenere-le-pagine-più-viste">
+  <strong>Creo loop per ottenere le pagine più viste</strong>
+  <a class="anchor" href="#creo-loop-per-ottenere-le-pagine-pi%c3%b9-viste">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#### Creo liste per giorni in ciascun mese ####</span>
+months <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">13</span>):
+  mese <span style="color:#f92672">=</span> str(i)<span style="color:#f92672">.</span>zfill(<span style="color:#ae81ff">2</span>)
+  months<span style="color:#f92672">.</span>append(mese)
+<span style="color:#75715e"># giorni</span>
+day_30 <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">31</span>):
+  giorno <span style="color:#f92672">=</span> str(i)<span style="color:#f92672">.</span>zfill(<span style="color:#ae81ff">2</span>)
+  day_30<span style="color:#f92672">.</span>append(giorno)
+
+day_31 <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">32</span>):
+  giorno <span style="color:#f92672">=</span> str(i)<span style="color:#f92672">.</span>zfill(<span style="color:#ae81ff">2</span>)
+  day_31<span style="color:#f92672">.</span>append(giorno)
+
+day_28<span style="color:#f92672">=</span>[]
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">29</span>):
+  giorno <span style="color:#f92672">=</span> str(i)<span style="color:#f92672">.</span>zfill(<span style="color:#ae81ff">2</span>)
+  day_28<span style="color:#f92672">.</span>append(giorno)
+
+day_29<span style="color:#f92672">=</span>[]
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">30</span>):
+  giorno <span style="color:#f92672">=</span> str(i)<span style="color:#f92672">.</span>zfill(<span style="color:#ae81ff">2</span>)
+  day_29<span style="color:#f92672">.</span>append(giorno)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> year <span style="color:#f92672">in</span> [<span style="color:#e6db74">&#34;2016&#34;</span>,<span style="color:#e6db74">&#34;2017&#34;</span>,<span style="color:#e6db74">&#34;2018&#34;</span>,<span style="color:#e6db74">&#34;2019&#34;</span>,<span style="color:#e6db74">&#34;2020&#34;</span>]:
+    print(<span style="color:#e6db74">&#34;Year: &#34;</span>, year)
+    <span style="color:#66d9ef">for</span> month <span style="color:#f92672">in</span> tqdm(months):
+        top_page <span style="color:#f92672">=</span> {}
+        top_page[<span style="color:#e6db74">&#34;_id&#34;</span>] <span style="color:#f92672">=</span> int(year<span style="color:#f92672">+</span>month) <span style="color:#75715e"># es _id september 2020 -&gt; {&#34;_id&#34;:202009}</span>
+        top_page[<span style="color:#e6db74">&#34;year&#34;</span>] <span style="color:#f92672">=</span> int(year)
+        top_page[<span style="color:#e6db74">&#34;month&#34;</span>] <span style="color:#f92672">=</span> int(month)
+        <span style="color:#75715e"># Get first 500 pages</span>
+        top_month <span style="color:#f92672">=</span> tp<span style="color:#f92672">.</span>get_topart(year,month,<span style="color:#e6db74">&#34;all-days&#34;</span>,<span style="color:#ae81ff">500</span>)
+        <span style="color:#75715e"># adding ids</span>
+        s <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>session()
+        <span style="color:#66d9ef">for</span> articolo <span style="color:#f92672">in</span> tqdm(top_month,desc<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Adding ids </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>):
+          url <span style="color:#f92672">=</span> tp<span style="color:#f92672">.</span>api_id(articolo[<span style="color:#e6db74">&#34;article&#34;</span>])
+          <span style="color:#75715e"># make api call</span>
+          i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+          not_found<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+          <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">30</span> <span style="color:#f92672">and</span> not_found:
+              <span style="color:#66d9ef">try</span>:
+                  r <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>get(url<span style="color:#f92672">=</span>url,timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+                  not_found<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>
+              <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ConnectionError</span>:
+                  time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">1</span>)
+                  i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+          r<span style="color:#f92672">=</span> r<span style="color:#f92672">.</span>json()
+          <span style="color:#75715e"># Adding id to page document</span>
+          articolo[<span style="color:#e6db74">&#34;page_id&#34;</span>] <span style="color:#f92672">=</span> tp<span style="color:#f92672">.</span>get_pageid(r)
+
+        top_page[<span style="color:#e6db74">&#34;top_month&#34;</span>] <span style="color:#f92672">=</span> top_month
+
+        <span style="color:#75715e"># Top page for each day</span>
+        top_day <span style="color:#f92672">=</span> []
+        <span style="color:#66d9ef">if</span> month <span style="color:#f92672">in</span> [<span style="color:#e6db74">&#34;01&#34;</span>,<span style="color:#e6db74">&#34;03&#34;</span>,<span style="color:#e6db74">&#34;05&#34;</span>,<span style="color:#e6db74">&#34;07&#34;</span>,<span style="color:#e6db74">&#34;08&#34;</span>,<span style="color:#e6db74">&#34;10&#34;</span>,<span style="color:#e6db74">&#34;12&#34;</span>]:
+            top_day <span style="color:#f92672">=</span> tp<span style="color:#f92672">.</span>get_topday(year,month,day_31)
+            top_page[<span style="color:#e6db74">&#34;top_day&#34;</span>] <span style="color:#f92672">=</span> top_day
+        <span style="color:#66d9ef">elif</span> month <span style="color:#f92672">in</span> [<span style="color:#e6db74">&#34;04&#34;</span>,<span style="color:#e6db74">&#34;06&#34;</span>,<span style="color:#e6db74">&#34;09&#34;</span>,<span style="color:#e6db74">&#34;11&#34;</span>]:
+            top_day <span style="color:#f92672">=</span> tp<span style="color:#f92672">.</span>get_topday(year,month,day_30)
+        <span style="color:#75715e"># anni bisestili</span>
+        <span style="color:#66d9ef">elif</span> month <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;02&#34;</span> <span style="color:#f92672">and</span> year <span style="color:#f92672">in</span> [<span style="color:#e6db74">&#34;2016&#34;</span>,<span style="color:#e6db74">&#34;2020&#34;</span>]:
+            top_day <span style="color:#f92672">=</span> tp<span style="color:#f92672">.</span>get_topday(year,month,day_29)
+        <span style="color:#75715e"># anni non bisestili</span>
+        <span style="color:#66d9ef">else</span>:
+            top_day <span style="color:#f92672">=</span> tp<span style="color:#f92672">.</span>get_topday(year,month,day_28)
+        top_page[<span style="color:#e6db74">&#34;top_day&#34;</span>] <span style="color:#f92672">=</span> top_day
+        <span style="color:#75715e"># Upload to MongoDB</span>
+        records<span style="color:#f92672">.</span>insert_one(top_page)
+</code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#articoli-più-cercati-su-wikipedia-per-ogni-mese"><strong>Articoli più cercati su Wikipedia per ogni mese</strong></a>
+      <ul>
+        <li><a href="#carico-funzioni-e-librerie-necessarie"><strong>Carico funzioni e librerie necessarie</strong></a></li>
+        <li><a href="#collegamento-a-mongodb"><strong>Collegamento a MongoDB</strong></a></li>
+        <li><a href="#creo-loop-per-ottenere-le-pagine-più-viste"><strong>Creo loop per ottenere le pagine più viste</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

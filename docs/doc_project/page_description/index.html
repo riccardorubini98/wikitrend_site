@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.84.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Descrizione pagina #  Per le pagine che presentano un nodo wikidata associato è stato possibile richiamare la descrizione del nodo ottenuta tramite l&rsquo;apposita API (tramite la proprietà descriptions). In questo modo è possibile comprendere in modo facile e immediato il contenuto di ogni singola pagina.
+Prendendo ad esempio la pagina relativa a David Bowie la descrizione associata è : British singer, musician, and actor (1947-2016).
+Codice Python #  Importo librerie necessarie.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Descrizione pagine" />
+<meta property="og:description" content="Descrizione pagina #  Per le pagine che presentano un nodo wikidata associato è stato possibile richiamare la descrizione del nodo ottenuta tramite l&rsquo;apposita API (tramite la proprietà descriptions). In questo modo è possibile comprendere in modo facile e immediato il contenuto di ogni singola pagina.
+Prendendo ad esempio la pagina relativa a David Bowie la descrizione associata è : British singer, musician, and actor (1947-2016).
+Codice Python #  Importo librerie necessarie." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/page_description/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Descrizione pagine | Wikitrend</title>
+<link rel="manifest" href="/wikitrend_site/manifest.json">
+<link rel="icon" href="/wikitrend_site/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/wikitrend_site/book.min.e935e20bd0d469378cb482f0958edf258c731a4f895dccd55799c6fbc8043f23.css" integrity="sha256-6TXiC9DUaTeMtILwlY7fJYxzGk&#43;JXczVV5nG&#43;8gEPyM="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/wikitrend_site"><img src="/wikitrend_site/wikitrend_logo.svg" alt="Logo" /><span>Wikitrend</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Data Management</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/data_structure/" class="">Dati</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/top_pages/" class="">Articoli più cercati per mese</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-67d9e14beb5c9195b060ad752f05072e" class="toggle"  />
+    <label for="section-67d9e14beb5c9195b060ad752f05072e" class="flex justify-between">
+      <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/" class="">Classificazione pagine</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/classifier_code/" class="">Codice Classificatore</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/class_accuracy/" class="">Valutazione Classificatore</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/page_description/" class=" active">Descrizione pagine</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/wikitrend_site/posts/" >
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/wikitrend_site/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Descrizione pagine</strong>
+
+  <label for="toc-control">
+    
+    <img src="/wikitrend_site/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#descrizione-pagina">Descrizione pagina</a>
+      <ul>
+        <li><a href="#codice-python">Codice Python</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="descrizione-pagina">
+  Descrizione pagina
+  <a class="anchor" href="#descrizione-pagina">#</a>
+</h1>
+<p>Per le pagine che presentano un nodo wikidata associato è stato possibile richiamare la descrizione del nodo ottenuta tramite l&rsquo;apposita API (tramite la proprietà <em>descriptions</em>). In questo modo è possibile comprendere in modo facile e immediato il contenuto di ogni singola pagina.</p>
+<p>Prendendo ad esempio la pagina relativa a David Bowie la descrizione associata è : <em>British singer, musician, and actor (1947-2016)</em>.</p>
+<h2 id="codice-python">
+  Codice Python
+  <a class="anchor" href="#codice-python">#</a>
+</h2>
+<p>Importo librerie necessarie.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
+<span style="color:#f92672">import</span> time <span style="color:#66d9ef">as</span> time
+<span style="color:#f92672">from</span> tqdm.notebook <span style="color:#f92672">import</span> tqdm
+<span style="color:#f92672">from</span> requests.exceptions <span style="color:#f92672">import</span> <span style="color:#a6e22e">ConnectionError</span>
+</code></pre></div><p>Mi collego al datavase MongoDB, in modo da connettermi alla collezione contenente le pagine singole.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Connect mongodb atlas</span>
+<span style="color:#f92672">from</span> pymongo <span style="color:#f92672">import</span> MongoClient
+access_token <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+client <span style="color:#f92672">=</span> MongoClient(access_token)
+db <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_database(<span style="color:#e6db74">&#39;wikitrend&#39;</span>)
+pages <span style="color:#f92672">=</span> db<span style="color:#f92672">.</span>page_topic<span style="color:#f92672">.</span>find() <span style="color:#75715e"># new collection for single pages</span>
+</code></pre></div><p>Per ogni pagina controllo se ha un nodo wikidata associato e tramite chiamata API cerco di estrarre la descrizione. Questa se presente viene aggiunta sotto la chiave <em>description</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># adding description to page with wikidata node associated</span>
+s <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>session()
+<span style="color:#66d9ef">for</span> page <span style="color:#f92672">in</span> tqdm(pages, desc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Getting description&#34;</span>):
+  <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;wikidata_id&#34;</span> <span style="color:#f92672">in</span> page<span style="color:#f92672">.</span>keys():
+      wikidata_id <span style="color:#f92672">=</span> page[<span style="color:#e6db74">&#34;wikidata_id&#34;</span>]
+      <span style="color:#66d9ef">if</span> wikidata_id <span style="color:#f92672">!=</span> <span style="color:#66d9ef">None</span>:
+        <span style="color:#75715e"># bulding api url</span>
+        url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://www.wikidata.org/w/api.php?action=wbgetentities&amp;props=descriptions&amp;languages=en&amp;format=json&amp;ids=&#34;</span><span style="color:#f92672">+</span>wikidata_id
+        <span style="color:#75715e"># make api call</span>
+        i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+        not_found<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+        <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">30</span> <span style="color:#f92672">and</span> not_found:
+            <span style="color:#66d9ef">try</span>:
+                r <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>get(url<span style="color:#f92672">=</span>url,timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+                not_found<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>
+            <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ConnectionError</span>:
+                time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">1</span>)
+                i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        risultato <span style="color:#f92672">=</span> r<span style="color:#f92672">.</span>json()
+        risultato <span style="color:#f92672">=</span> risultato[<span style="color:#e6db74">&#34;entities&#34;</span>]
+        wikidata_id <span style="color:#f92672">=</span> list(risultato<span style="color:#f92672">.</span>keys())[<span style="color:#ae81ff">0</span>]
+        <span style="color:#66d9ef">try</span>:
+          description <span style="color:#f92672">=</span> risultato[wikidata_id][<span style="color:#e6db74">&#34;descriptions&#34;</span>][<span style="color:#e6db74">&#34;en&#34;</span>][<span style="color:#e6db74">&#34;value&#34;</span>]
+          <span style="color:#75715e"># updating page</span>
+          db<span style="color:#f92672">.</span>page_topic<span style="color:#f92672">.</span>update_one({<span style="color:#e6db74">&#34;_id&#34;</span>: page[<span style="color:#e6db74">&#34;_id&#34;</span>]}, {<span style="color:#e6db74">&#34;$set&#34;</span>:{<span style="color:#e6db74">&#34;description&#34;</span>: description}}, upsert <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>)
+        <span style="color:#66d9ef">except</span>:
+          <span style="color:#66d9ef">pass</span>
+
+</code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#descrizione-pagina">Descrizione pagina</a>
+      <ul>
+        <li><a href="#codice-python">Codice Python</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
