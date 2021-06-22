@@ -309,7 +309,7 @@ https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/ORES.drafttopic.Ann_Bi
 </blockquote>
 <p>Tra le proprietà appartenenti ai nodi quella ritenuta più interessante è stata la <em>P31</em>, ovvero quella contenente il tipo di istanza del nodo. Le varie modalità assumibili da questa proprietà sono molte e nella maggior parte dei casi non utilizzabili. Vi sono però alcune eccezioni, le quali hanno invece permesso di ottenere informazioni aggiuntive e utili per classificare le pagine. Tra queste in primis vi è la modalità <em>human</em>, associata a tutte le pagine di carattere biografico (come ad esempio il caso di Ann Bishop, presente nella foto sottostante), che dunque permette di definire subito se un articolo è riferito ad un personaggio famoso o ad altro. Questa modalità non permette di definire quindi una categoria specifica ma resta comunque utile per attuare una macro distinzione fra le due principali tipologie di pagine analizzate.</p>
 <div style="align: left; text-align:center;">
-  <img src="/bishop_wikidata.png" title = "Ann Bishop's Wikidata node"/>
+  <img src="\bishop_wikidata.png" title = "Ann Bishop's Wikidata node"/>
   <span style="display:block;"><i><small>Ann Bishop's Wikidata node</small></i> </span>
 </div>
 <p>Gli altri tipi d&rsquo;istanza ritenuti utilizzabili sono quelli che invece permettono anche di attuare una classificazione della pagina. Prendendo ad esempio il nodo Wikidata associata al film <a href="https://www.wikidata.org/wiki/Q47703"><em>The Godfather</em></a> (in italiano <em>Il Padrino</em>), si può vedere come la proprietà <em>P31</em> assuma giustamente il valore <em>film</em> e dunque, riferendosi alla tassonomia utilizzata da <em>ORES</em>, la pagina andrebbe classificata come <em>culture.media.films</em>. Questo tipo di ragionamento è stato poi applicato dove possibile ad altri tipi di nodi come quelli riferiti ai videogiochi, ai libri, alle serie televise ecc. (per maggiori dettagli si faccia riferimento al codice del <a href="/wikitrend_site/docs/doc_project/category/classifier_code/">classificatore</a>). Così facendo si è riusciti ad ottenere per alcune tipologie di articoli una categorizzazione corretta indipendente dall&rsquo;utilizzo di un classificatore esterno. In particolar modo questo procedimento è stato utile per le pagine relative a film e serie televisive, le quali si sono rivelate essere fra le più visitate sia a livello mensile che annuale.</p>
@@ -325,7 +325,7 @@ https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/ORES.drafttopic.Ann_Bi
 <li>O dalla lista di categorie previste o dalla tipologia del nodo Wikidata assegno una singola categoria alla pagina in esame.</li>
 </ol>
 <div style="align: left; text-align:center;">
-  <img src="/classifier_diagram.svg" title = "Classifier Diagram"/>
+  <img src="\classifier_diagram.svg" title = "Classifier Diagram"/>
   <span style="display:block;"><i><small>Classifier Diagram</small></i> </span>
 </div>
 <p>A differenza della classificazione tramite nodo Wikidata, quella ottenuta tramite classificatore <em>ORES</em> restituisce come già detto una lista delle categorie più probabili, la quale deve per forza di cose essere pulita in modo da ottenere una singola categoria associata alla pagina. La regola generale utilizzata nel processo è stata quella di prendere la prima categoria presente nella lista, essendo questa ordinata per le posterior in maniera decrescente. In alcuni casi però questo modo di procedere non è il più ottimale, infatti:</p>
