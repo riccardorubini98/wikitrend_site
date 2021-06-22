@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.84.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Classificazione delle pagine Wikipedia #  In ottica dello scopo di ricerca del progetto si è mostrato necessario andare ad ottenere una divisione per argomento delle pagine prese in esame, così da poter effettivamente analizzare a fondo i trend di ricerca degli utenti Wikipedia. Con la classificazione degli articoli infatti è possibile studiare quali tipologie di pagine sono di norma tra le più visitate, se nel corso dei mesi alcuni topic hanno avuto picchi di interesse e così via.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Classificazione pagine" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/" />
+
+<title>Classificazione pagine | Wikitrend</title>
+<link rel="manifest" href="https://riccardorubini98.github.io/wikitrend_site/manifest.json">
+<link rel="icon" href="https://riccardorubini98.github.io/wikitrend_site/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://riccardorubini98.github.io/wikitrend_site/book.min.e935e20bd0d469378cb482f0958edf258c731a4f895dccd55799c6fbc8043f23.css" integrity="sha256-6TXiC9DUaTeMtILwlY7fJYxzGk&#43;JXczVV5nG&#43;8gEPyM="><link rel="alternate" type="application/rss+xml" href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/index.xml" title="Wikitrend" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://riccardorubini98.github.io/wikitrend_site/"><img src="https://riccardorubini98.github.io/wikitrend_site/wikitrend_logo.svg" alt="Logo" /><span>Wikitrend</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Data Management</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/data_structure/" class="">Dati</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/top_pages/" class="">Articoli più cercati per mese</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-67d9e14beb5c9195b060ad752f05072e" class="toggle" checked />
+    <label for="section-67d9e14beb5c9195b060ad752f05072e" class="flex justify-between">
+      <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/" class="active">Classificazione pagine</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/classifier_code/" class="">Codice Classificatore</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/class_accuracy/" class="">Valutazione Classificatore</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/page_description/" class="">Descrizione pagine</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://riccardorubini98.github.io/wikitrend_site/posts/" >
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://riccardorubini98.github.io/wikitrend_site/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Classificazione pagine</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://riccardorubini98.github.io/wikitrend_site/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#classificazione-delle-pagine-wikipedia"><strong>Classificazione delle pagine Wikipedia</strong></a>
+      <ul>
+        <li><a href="#scelta-del-metodo-di-classificazione"><strong>Scelta del metodo di classificazione</strong></a>
+          <ul>
+            <li><a href="#classificazione-di-wikipedia"><strong>Classificazione di Wikipedia</strong></a></li>
+            <li><a href="#classificatore-ores"><strong>Classificatore ORES</strong></a></li>
+            <li><a href="#classificazione-tramite-wikidata"><strong>Classificazione tramite Wikidata</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#struttura-del-classificatore"><strong>Struttura del classificatore</strong></a>
+          <ul>
+            <li><a href="#categoria-prevista-biography"><strong>Categoria prevista: Biography</strong></a></li>
+            <li><a href="#categoria-prevista-geography"><strong>Categoria prevista: Geography</strong></a></li>
+            <li><a href="#lista-categorie-vuota"><strong>Lista categorie vuota</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#nuovo-sistema-di-categorie"><strong>Nuovo sistema di categorie</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="classificazione-delle-pagine-wikipedia">
+  <strong>Classificazione delle pagine Wikipedia</strong>
+  <a class="anchor" href="#classificazione-delle-pagine-wikipedia">#</a>
+</h1>
+<p>In ottica dello scopo di ricerca del progetto si è mostrato necessario andare ad ottenere una divisione per argomento delle pagine prese in esame, così da poter effettivamente analizzare a fondo i trend di ricerca degli utenti Wikipedia. Con la classificazione degli articoli infatti è possibile studiare quali tipologie di pagine sono di norma tra le più visitate, se nel corso dei mesi alcuni topic hanno avuto picchi di interesse e così via.</p>
+<h2 id="scelta-del-metodo-di-classificazione">
+  <strong>Scelta del metodo di classificazione</strong>
+  <a class="anchor" href="#scelta-del-metodo-di-classificazione">#</a>
+</h2>
+<p>Una volta stabilità la necessità di classificare le pagine precedentemente scaricate, ci si è trovati di fronte a dover scegliere quale fosse il metodo più opportuno ed efficace per portare a termine questa task. Gli approcci provati sono stati i seguenti:</p>
+<h3 id="classificazione-di-wikipedia">
+  <strong>Classificazione di Wikipedia</strong>
+  <a class="anchor" href="#classificazione-di-wikipedia">#</a>
+</h3>
+<p>La prima opzione vagliata era quella più immediata, ovvero utilizzare il sistema di classificazione interno di Wikipedia. In Wikipedia infatti ogni pagina presenta una o più categorie associate, le quali sono organizzate in un albero gerarchico. Prendendo ad esempio la pagina della Wikipedia inglese relativa alla biologa <a href="https://en.wikipedia.org/wiki/Ann_Bishop_%28biologist%29">Ann Bishop</a>, troviamo in fondo alla pagina come categorie associate <em>20th-century British biologists</em>, <em>20th-century British women scientists</em> e molte altre ancora.</p>
+<p>Come si può notare le categorie sono estremamente specifiche, andando contro alla volontà di ottenere in battuta finale una macro-classificazione con poche modalità. Inoltre, avere più categorie associate alla singola pagina pone il problema di dover stabilire quale mantenere e quali scartare, compito non facile essendo queste ordinate alfabeticamente e non per importanza.</p>
+<p>Il tentativo di ovviare a questi problemi facendo ricorso alla struttura gerarchica della classificazione non ha portato ad alcuna soluzione ma anzi ha mostrato ancora di più i limiti di questo approccio per lo scopo preposto. In primis l&rsquo;albero gerarchico  è molto profondo, obbligando un numero non indifferente di iter per arrivare ad una delle <a href="https://en.wikipedia.org/wiki/Category:Main_topic_classifications">categorie padri</a>. Inoltre ogni nodo-figlio può avere associati più nodi-padre, andando ad introdurre quindi ulteriori scelte da compiere sui vari livelli e rendendo la determinazione della categoria finale un processo per lo più frutto del caso. Restando sull&rsquo;esempio di Anna Bishop, partendo dalla categoria <em>20th-century British biologists</em> procedendo in modo casuale nella selezione dei nodi-padri potremmo arrivare alla categoria <em>Science</em> o alla categoria <em>Geography</em> o anche alla categoria <em>Knowledge</em>.</p>
+<div style="align: left; text-align:center;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Category-diagram.png/800px-Category-diagram.png" title = "Wikipedia category structure"/>
+  <span style="display:block;"><i><small>Wikipedia category structure</small></i> </span>
+</div>
+<p>Il ricorso alla struttura di classificazione nativa di Wikipedia dunque non è stata ritenuta adeguata per gli scopi preposti e si è deciso di passare ad altri tipi di approccio.</p>
+<h3 id="classificatore-ores">
+  <strong>Classificatore ORES</strong>
+  <a class="anchor" href="#classificatore-ores">#</a>
+</h3>
+<p>Scartata la classificazione tramite Wikipedia stessa, si è valutato l&rsquo;utilizzo del classificatore di pagine inserito nel pacchetto <a href="https://www.mediawiki.org/wiki/ORES">ORES</a>, un servizio gratuito di Machine Learning (tramite API) creato appositamente per funzionare su articoli di Wikipedia. La classificazione tramite ORES funziona solo sulla pagine in lingua inglese ed è basata su una tassonomia (nel dettaglio al seguente <a href="https://www.mediawiki.org/wiki/ORES/Articletopic">link</a>) avente come nodi-padre le categorie <em>Culture</em>, <em>Geography</em>, <em>History and Society</em> e <em>STEM</em>.</p>
+<p>In ORES esistono due principali metodi di categorizzazione delle pagine:</p>
+<ol>
+<li><strong>Draft topic:</strong> classificatore indicato principalmente per categorizzare le nuove bozze di articoli. La documentazione non è molto chiara sul suo funzionamento ma sembra suggerire l&rsquo;impiego di un classico classificatore supervisionato.</li>
+<li><strong>Article topic:</strong> classificatore indicato per gli articoli già esistenti. La classificazione fa riferimento alle <em>WikiProject tags</em>, ovvero ai progetti Wikipedia dove la pagina in analisi è stata inserita (maggiori info sui WikiProject al seguente <a href="https://en.wikipedia.org/wiki/Wikipedia:WikiProject">link</a>). Ad ogni progetto viene associata una specifica categoria appartenente alla tassonomia utilizzata dal classificatore (un esempio lo si può trovare <a href="https://figshare.com/articles/dataset/Wikipedia_Articles_and_Associated_WikiProject_Templates/10248344?file=20205654">qui</a>). Queste informazioni poi vengono utilizzate per ottenere le categorie predette dal classificatore (anche in questo caso la documentazione non è particolarmente esaustiva). Nell&rsquo;immagine successiva si presenta un esempio di classificazione con il metodo <em>article topic</em> per la pagina di Ann Bishop:</li>
+</ol>
+<div style="align: left; text-align:center;">
+  <img src="
+https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/ORES.drafttopic.Ann_Bishop_example.svg/1200px-ORES.drafttopic.Ann_Bishop_example.svg.png" alt="ORES.drafttopic.Ann Bishop example.svg" title = "Categorization with article topic"/>
+  <span style="display:block;"><i><small>Categorization with article topic</small></i> </span>
+</div>
+<p>Entrambi i classificatori come output hanno un file json, all&rsquo;interno del quale è presente una lista delle categorie previste per quella pagina, ordinata dalla più probabile alla meno probabile tra quelle con una posterior superiore allo 0.50. Restando sull&rsquo;esempio di Ann Bishop la lista di output (presente in forma estesa <a href="https://ores.wikimedia.org/v3/scores/enwiki/?models=articletopic&amp;revids=995175964">qui</a>) per il metodo <em>article topic</em> è:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#e6db74">&#34;prediction&#34;</span>: [
+                <span style="color:#e6db74">&#34;Culture.Biography.Biography*&#34;</span>,
+                <span style="color:#e6db74">&#34;Culture.Biography.Women&#34;</span>,
+                <span style="color:#e6db74">&#34;STEM.STEM*&#34;</span>
+              ]
+</code></pre></div><p>Testando manualmente i due metodi di classificazione sulle 500 pagine più viste nel mese di settembre 2020, si è notato come un numero soddisfacente di pagine avesse una lista di categorie associata ritenibile corretta e che in genere il metodo <em>draft topic</em> risultava essere il più affidabile tra i due.</p>
+<h3 id="classificazione-tramite-wikidata">
+  <strong>Classificazione tramite Wikidata</strong>
+  <a class="anchor" href="#classificazione-tramite-wikidata">#</a>
+</h3>
+<p>Come ultimo approccio si è pensato di provare a sfruttare i nodi Wikidata associati a quasi tutte le pagine Wikipedia per trarre informazioni utili e certe per la classificazione. Wikidata è:</p>
+<blockquote>
+<p><em>una base di conoscenza online collaborativa, sostenuta e ospitata dalla Wikimedia Foundation, con lo scopo di fornire un database comune di supporto agli altri progetti di Wikimedia, consultabile e modificabile sia da utenti umani che da bot.</em>
+&ndash; <cite><a href="https://it.wikipedia.org/wiki/Wikidata">Pagina Wikipedia di Wikidata</a></cite></p>
+</blockquote>
+<p>Tra le proprietà appartenenti ai nodi quella ritenuta più interessante è stata la <em>P31</em>, ovvero quella contenente il tipo di istanza del nodo. Le varie modalità assumibili da questa proprietà sono molte e nella maggior parte dei casi non utilizzabili. Vi sono però alcune eccezioni, le quali hanno invece permesso di ottenere informazioni aggiuntive e utili per classificare le pagine. Tra queste in primis vi è la modalità <em>human</em>, associata a tutte le pagine di carattere biografico (come ad esempio il caso di Ann Bishop, presente nella foto sottostante), che dunque permette di definire subito se un articolo è riferito ad un personaggio famoso o ad altro. Questa modalità non permette di definire quindi una categoria specifica ma resta comunque utile per attuare una macro distinzione fra le due principali tipologie di pagine analizzate.</p>
+<div style="align: left; text-align:center;">
+  <img src="https://riccardorubini98.github.io/wikitrend_site/bishop_wikidata.png" title = "Ann Bishop's Wikidata node"/>
+  <span style="display:block;"><i><small>Ann Bishop's Wikidata node</small></i> </span>
+</div>
+<p>Gli altri tipi d&rsquo;istanza ritenuti utilizzabili sono quelli che invece permettono anche di attuare una classificazione della pagina. Prendendo ad esempio il nodo Wikidata associata al film <a href="https://www.wikidata.org/wiki/Q47703"><em>The Godfather</em></a> (in italiano <em>Il Padrino</em>), si può vedere come la proprietà <em>P31</em> assuma giustamente il valore <em>film</em> e dunque, riferendosi alla tassonomia utilizzata da <em>ORES</em>, la pagina andrebbe classificata come <em>culture.media.films</em>. Questo tipo di ragionamento è stato poi applicato dove possibile ad altri tipi di nodi come quelli riferiti ai videogiochi, ai libri, alle serie televise ecc. (per maggiori dettagli si faccia riferimento al codice del <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/classifier_code/">classificatore</a>). Così facendo si è riusciti ad ottenere per alcune tipologie di articoli una categorizzazione corretta indipendente dall&rsquo;utilizzo di un classificatore esterno. In particolar modo questo procedimento è stato utile per le pagine relative a film e serie televisive, le quali si sono rivelate essere fra le più visitate sia a livello mensile che annuale.</p>
+<h2 id="struttura-del-classificatore">
+  <strong>Struttura del classificatore</strong>
+  <a class="anchor" href="#struttura-del-classificatore">#</a>
+</h2>
+<p>Partendo da quanto detto nel punto precedente, il classificatore delle pagine Wikipedia utilizzato in questo progetto è stato creato tramite un approccio ibrido tra il classificatore <em>ORES</em> e l&rsquo;utilizzo dei nodi Wikidata. Il funzionamento (a grandi linee) è il seguente:</p>
+<ol>
+<li>Vedo se la pagina ha un nodo Wikidata associato.</li>
+<li>Se lo ha, controllo il tipo d&rsquo;istanza del nodo e se questo è utilizzabile per ottenere una classificazione della pagina (ade esempio se è di tipo <em>film</em>).</li>
+<li>Se la pagina non ha un nodo o questo non ha una tipologia utilizzabile, assegno la lista di categorie previste tramite il classificatore ORES, con il metodo <em>draft topic</em>.</li>
+<li>O dalla lista di categorie previste o dalla tipologia del nodo Wikidata assegno una singola categoria alla pagina in esame.</li>
+</ol>
+<div style="align: left; text-align:center;">
+  <img src="https://riccardorubini98.github.io/wikitrend_site/classifier_diagram.svg" title = "Classifier Diagram"/>
+  <span style="display:block;"><i><small>Classifier Diagram</small></i> </span>
+</div>
+<p>A differenza della classificazione tramite nodo Wikidata, quella ottenuta tramite classificatore <em>ORES</em> restituisce come già detto una lista delle categorie più probabili, la quale deve per forza di cose essere pulita in modo da ottenere una singola categoria associata alla pagina. La regola generale utilizzata nel processo è stata quella di prendere la prima categoria presente nella lista, essendo questa ordinata per le posterior in maniera decrescente. In alcuni casi però questo modo di procedere non è il più ottimale, infatti:</p>
+<ol>
+<li>Per le pagine relative a personaggi famosi in genere nelle prime posizioni si trova la categoria <em>culture.biography</em>, la quale non è utile nel processo di classificazione, poiché indica solo se la pagina è di tipo biografico.</li>
+<li>Le categorie di tipo <em>geography</em> il più delle volte possono essere fuorvianti. Infatti queste indicano più che altro la provenienza geografica del tema trattato nell&rsquo;articolo, indipendentemente dall&rsquo;argomento. Ad esempio, alla pagina relativa agli USA è associata giustamente la categoria <em>Geography.Regions.Americas.North America</em>, la quale però è presente anche nella lista delle categorie previste per l&rsquo;attore americano <em>Al Pacino</em>. Nel primo caso la categoria di tipo <em>geography</em> sarebbe utile, poiché effettivamente associata ad una pagina di carattere geografico, mentre nella secondo potrebbe risultare ingannevole, portando a classificare in maniera errata una pagina in realtà riferita ad un attore.</li>
+<li>Il classificatore può riportare in output una lista vuota.</li>
+</ol>
+<p>I tre problemi esposti sono stati risolti nella maniera seguente:</p>
+<h3 id="categoria-prevista-biography">
+  <strong>Categoria prevista: Biography</strong>
+  <a class="anchor" href="#categoria-prevista-biography">#</a>
+</h3>
+<p>Nel caso in cui la categoria prevista fosse del tipo <em>culture.biography</em> o comunque presente nella lista di categorie associate alla pagina, si è deciso di scartarla, utilizzando comunque questa informazione per determinare se una pagina fosse di tipo biografico o meno. In questo modo oltre all&rsquo;informazione derivata da Wikidata è presente un ulteriore check per dividere le pagine nelle due tipologie principali: biografiche o altro.</p>
+<p>Qual ora una pagina risultasse avere solo categorie biografiche, questa viene tratta come un articolo non categorizzato (ovvero con associata una lista vuota).</p>
+<h3 id="categoria-prevista-geography">
+  <strong>Categoria prevista: Geography</strong>
+  <a class="anchor" href="#categoria-prevista-geography">#</a>
+</h3>
+<p>Per quanto riguarda le categorie di tipo geografico si è deciso di non considerarle, a meno che queste non fossero le uniche presenti nella lista data dal classificatore. Da prima analisi su 500 pagine si è infatti notato come in linea generale le pagine di carattere esclusivamente geografico fossero in realtà poche e quasi sempre con associata una lista contenente solo categorie <em>geography</em>. Dunque con questa tecnica non ci sarebbero stati particolari problemi con gli articoli geografici e contemporaneamente si sarebbe andato ad eliminare il problema per le altre tipologie di pagine. A titolo d&rsquo;esempio, una pagina come quella di Al Pacino alla quale viene associata dal classificatore una lista del tipo <code>[Geography.Regions.Americas.North America,Culture.Media.Film]</code>, se normalmente avrebbe come prima categoria associata <em>Geography.Regions.Americas.North America</em>, con questa tecnica sarà classificata come <em>Culture.Media.Film</em>.</p>
+<p>Nel caso di una pagina biografica e con associata una lista contenente solo categorie di tipo geografico si è deciso di trattarla come non categorizzata (ovvero con associata una lista vuota).</p>
+<h3 id="lista-categorie-vuota">
+  <strong>Lista categorie vuota</strong>
+  <a class="anchor" href="#lista-categorie-vuota">#</a>
+</h3>
+<p>Nel caso una pagina abbia associata una lista vuota (dal principio o dopo i passaggi sopra) , prima di segnarla come non classificata si è deciso di provar a fare un tentativo anche con il metodo <em>article topic</em>, così da vedere se in questo modo si riuscisse ad ottenere un qualche tipo di classificazione. Questo metodo è stato anche utlizzato per le pagine non biografiche classificate come <em>geography</em> con il metodo <em>draft topic</em>, poiché persistevano alcuni errori di misclassificazione.</p>
+<blockquote class="book-hint info">
+  Chiaramente la classificazione di una pagina non sempre è riducibile all&rsquo;assegnazione di un&rsquo;unica categoria, essendoci articoli,tematiche e personaggi che spaziano su più domini. Ad esempio il disastro di Chernobyl è in primis un fatto di interesse storico ma ha anche una forte componente di carattere scientifico. Avendo scelto per semplicità di associare solo una singola categoria per pagina, questa componente di <em>&ldquo;multidisciplinarietà&rdquo;</em> è stata per forza di cose esclusa e in alcuni casi può essere che il classificatore abbia selezionato una categoria secondaria rispetto a quella principale.
+</blockquote>
+
+<h2 id="nuovo-sistema-di-categorie">
+  <strong>Nuovo sistema di categorie</strong>
+  <a class="anchor" href="#nuovo-sistema-di-categorie">#</a>
+</h2>
+<p>Finito il ciclo del classificatore, ciascuna pagina arriva ad aver associata una sola categoria ORES o nel caso di mancata classificazione la categoria <em>other.category</em>. Come si può facilmente intuire scorrendo la <a href="https://www.mediawiki.org/wiki/ORES/Articletopic">lista</a> delle possibili categorie assumibili, quelle specifiche sono in numero troppo elevato per restituire una visione sintetica delle comportamento di ricerca dei visitatori di Wikipedia, mentre quelle macro sono poche ed eccessivamente aggreganti.</p>
+<p>Per risolvere questo problema si è giunti alla conclusione che la scelta migliore fosse quella di disegnare una tassonomia custom, in modo da ri-mappare le categorie ORES dentro un nuovo sistema più equilibrato. Inoltre, questo espediente può aiutare ulteriormente a risolvere alcuni dei problemi di misclassificazione emersi dalla prima analisi, andando a mappare nella giusta categoria pagine di un certo tipo che sistematicamente erano classificate in maniera errata.</p>
+<p>Si sono create in tutto 6 categorie (si è eliminata qualsiasi struttura gerarchica dato che non si è ritenuta utile e peggiorava la qualità della classificazione finale), le quali sono state definite guardando in primis le principali classi con le quali vengono classificati gli articoli sui quotidiani online più importanti, modificandole per meglio adattarle al contesto. Queste nuove categorie sono:</p>
+<ol>
+<li>
+<p><strong>art, culture and entertainment</strong>: In questa categoria sono contenuti gli articoli inerenti al mondo dell&rsquo;arte, della cultura e dell&rsquo;intrattenimento in generale. Sono qui classificati ad esempio scrittori, opere d&rsquo;arte, attori, musicisti, film ecc. Essendo la linea di demarcazione tra arte e intrattenimento (specie ai giorni nostri) molto labile, si è ritenuto opportuno optare per questo tipo d&rsquo;aggregazione.</p>
+</li>
+<li>
+<p><strong>history and geography</strong>:  In questa categoria sono contenuti gli articoli a carattere storico e geografico. Sono qui classificati ad esempio generali, politici, guerre, nazioni ecc. Si è operata questa scelta poiché molte pagine storiche hanno una forte componente geografica e viceversa.</p>
+</li>
+<li>
+<p><strong>internet and game</strong>: In questa categoria sono contenuti gli articoli inerenti al web e ai giochi. Sono qui classificati ad esempio social media, web star, videogames ecc. Questa categoria è stata inserita in modo da catturare tutte quelle pagine che si riferiscono alla realtà interattiva e digitale.</p>
+</li>
+<li>
+<p><strong>sport</strong>: In questa categoria sono contenuti gli articoli inerenti a sportivi od eventi sportivi. Sono qui classificati ad esempio calciatori, risultati dei campionati ecc.</p>
+</li>
+<li>
+<p><strong>STEM</strong>: In questa categoria sono contenuti gli articoli a carattere scientifico e tecnologico. Sono qui classificati ad esempio scienziati, animali, elementi chimici ecc.</p>
+</li>
+<li>
+<p><strong>other</strong>: In questa categoria sono contenuti tutti quegli articoli che per un motivo o per l&rsquo;altro non sono stati classificati o presentano categorie non mappate nelle classi prima presentate poiché poco frequenti.</p>
+</li>
+</ol>
+<p>Per le regole di mappatura nel nuovo sistema di categoria utilizzato si faccia riferimento al codice del <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/classifier_code/">classificatore</a>.</p>
+<p>Il documento json finale prodotto dal classificatore per ogni articolo (in questo caso l&rsquo;esempio è su David Bowie) sarà del tipo:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">{
+    <span style="color:#e6db74">&#34;_id&#34;</span>: <span style="color:#ae81ff">8786</span>, <span style="color:#75715e"># page_id</span>
+    <span style="color:#e6db74">&#34;article&#34;</span>:<span style="color:#e6db74">&#34;David_Bowie&#34;</span>, <span style="color:#75715e"># page title</span>
+    <span style="color:#e6db74">&#34;category&#34;</span>:<span style="color:#e6db74">&#34;arts, culture and entertainment&#34;</span>, <span style="color:#75715e"># category with taxonomy ad hoc</span>
+    <span style="color:#e6db74">&#34;description&#34;</span>:<span style="color:#e6db74">&#34;British singer, musician, and actor (1947-2016)&#34;</span>, <span style="color:#75715e"># description </span>
+    <span style="color:#e6db74">&#34;node_id&#34;</span>:<span style="color:#e6db74">&#34;Q5&#34;</span>, <span style="color:#75715e"># node id type</span>
+    <span style="color:#e6db74">&#34;ores_cat&#34;</span>:<span style="color:#e6db74">&#34;Culture.Media.Music&#34;</span>, <span style="color:#75715e"># cateogry predicted by ores classifier</span>
+    <span style="color:#e6db74">&#34;page_type&#34;</span>:<span style="color:#e6db74">&#34;biography&#34;</span>, <span style="color:#75715e"># type of the page (other or biography)</span>
+    <span style="color:#e6db74">&#34;rev_id&#34;</span>: <span style="color:#ae81ff">1015654584</span>, <span style="color:#75715e"># id last revison</span>
+    <span style="color:#e6db74">&#34;wikidata_id&#34;</span>:<span style="color:#e6db74">&#34;Q5383&#34;</span> <span style="color:#75715e"># id page associated wikidata node</span>
+}
+</code></pre></div><p>Le performance del classificatore sono state valutate e discusse in questa <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/class_accuracy/">sezione</a>.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#classificazione-delle-pagine-wikipedia"><strong>Classificazione delle pagine Wikipedia</strong></a>
+      <ul>
+        <li><a href="#scelta-del-metodo-di-classificazione"><strong>Scelta del metodo di classificazione</strong></a>
+          <ul>
+            <li><a href="#classificazione-di-wikipedia"><strong>Classificazione di Wikipedia</strong></a></li>
+            <li><a href="#classificatore-ores"><strong>Classificatore ORES</strong></a></li>
+            <li><a href="#classificazione-tramite-wikidata"><strong>Classificazione tramite Wikidata</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#struttura-del-classificatore"><strong>Struttura del classificatore</strong></a>
+          <ul>
+            <li><a href="#categoria-prevista-biography"><strong>Categoria prevista: Biography</strong></a></li>
+            <li><a href="#categoria-prevista-geography"><strong>Categoria prevista: Geography</strong></a></li>
+            <li><a href="#lista-categorie-vuota"><strong>Lista categorie vuota</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#nuovo-sistema-di-categorie"><strong>Nuovo sistema di categorie</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

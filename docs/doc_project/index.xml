@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Management on Wikitrend</title>
+    <link>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/</link>
+    <description>Recent content in Data Management on Wikitrend</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dati</title>
+      <link>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/data_structure/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/data_structure/</guid>
+      <description>I Dati #  Struttura dei dataset #  Il primo passo per studiare i trend di ricerca di Wikipedia è stato ovviamente quello di ottenere dei dati utili a tale scopo. Le fonti principali utilizzate sono state sostanzialmente quattro: Wikipedia, Wikidata, ORES e Xtools (per i dettagli vedere le sezioni riguardanti la costruzione dei dataset). Queste sono state sfruttate, sia singolarmente che in maniera combinata, per andare ad ottenere tre distinti dataset finali, i quali costituiscono la base di questo progetto.</description>
+    </item>
+    
+    <item>
+      <title>Articoli più cercati per mese</title>
+      <link>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/top_pages/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/top_pages/</guid>
+      <description>Articoli più cercati su Wikipedia per ogni mese #  Qui è presentato il codice python per ottenere le pagine più visitate di Wikipedia inglese per ogni mese da gennaio 2016 a dicembre 2020. Ogni documento è costituito dal mese e anno di riferimento, dalle prime 500 pagine (senza contare pagine proprietarie di Wikipedia non di nostro interesse) più viste in quel periodo e infine la pagina più vista per ciascun giorno di quel mese.</description>
+    </item>
+    
+    <item>
+      <title>Descrizione pagine</title>
+      <link>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/page_description/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/page_description/</guid>
+      <description>Descrizione pagina #  Per le pagine che presentano un nodo wikidata associato è stato possibile richiamare la descrizione del nodo ottenuta tramite l&amp;rsquo;apposita API (tramite la proprietà descriptions). In questo modo è possibile comprendere in modo facile e immediato il contenuto di ogni singola pagina.
+Prendendo ad esempio la pagina relativa a David Bowie la descrizione associata è : British singer, musician, and actor (1947-2016).
+Codice Python #  Importo librerie necessarie.</description>
+    </item>
+    
+  </channel>
+</rss>

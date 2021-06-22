@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.84.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="I Dati #  Struttura dei dataset #  Il primo passo per studiare i trend di ricerca di Wikipedia è stato ovviamente quello di ottenere dei dati utili a tale scopo. Le fonti principali utilizzate sono state sostanzialmente quattro: Wikipedia, Wikidata, ORES e Xtools (per i dettagli vedere le sezioni riguardanti la costruzione dei dataset). Queste sono state sfruttate, sia singolarmente che in maniera combinata, per andare ad ottenere tre distinti dataset finali, i quali costituiscono la base di questo progetto.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Dati" />
+<meta property="og:description" content="I Dati #  Struttura dei dataset #  Il primo passo per studiare i trend di ricerca di Wikipedia è stato ovviamente quello di ottenere dei dati utili a tale scopo. Le fonti principali utilizzate sono state sostanzialmente quattro: Wikipedia, Wikidata, ORES e Xtools (per i dettagli vedere le sezioni riguardanti la costruzione dei dataset). Queste sono state sfruttate, sia singolarmente che in maniera combinata, per andare ad ottenere tre distinti dataset finali, i quali costituiscono la base di questo progetto." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/data_structure/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Dati | Wikitrend</title>
+<link rel="manifest" href="https://riccardorubini98.github.io/wikitrend_site/manifest.json">
+<link rel="icon" href="https://riccardorubini98.github.io/wikitrend_site/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://riccardorubini98.github.io/wikitrend_site/book.min.e935e20bd0d469378cb482f0958edf258c731a4f895dccd55799c6fbc8043f23.css" integrity="sha256-6TXiC9DUaTeMtILwlY7fJYxzGk&#43;JXczVV5nG&#43;8gEPyM="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://riccardorubini98.github.io/wikitrend_site/"><img src="https://riccardorubini98.github.io/wikitrend_site/wikitrend_logo.svg" alt="Logo" /><span>Wikitrend</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Data Management</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/data_structure/" class=" active">Dati</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/top_pages/" class="">Articoli più cercati per mese</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-67d9e14beb5c9195b060ad752f05072e" class="toggle"  />
+    <label for="section-67d9e14beb5c9195b060ad752f05072e" class="flex justify-between">
+      <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/" class="">Classificazione pagine</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/classifier_code/" class="">Codice Classificatore</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/class_accuracy/" class="">Valutazione Classificatore</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/page_description/" class="">Descrizione pagine</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://riccardorubini98.github.io/wikitrend_site/posts/" >
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://riccardorubini98.github.io/wikitrend_site/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Dati</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://riccardorubini98.github.io/wikitrend_site/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#i-dati"><strong>I Dati</strong></a>
+      <ul>
+        <li><a href="#struttura-dei-dataset"><strong>Struttura dei dataset</strong></a></li>
+        <li><a href="#utilizzo-dei-dati"><strong>Utilizzo dei dati</strong></a></li>
+        <li><a href="#join-delle-collezioni"><strong>Join delle collezioni</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="i-dati">
+  <strong>I Dati</strong>
+  <a class="anchor" href="#i-dati">#</a>
+</h1>
+<h2 id="struttura-dei-dataset">
+  <strong>Struttura dei dataset</strong>
+  <a class="anchor" href="#struttura-dei-dataset">#</a>
+</h2>
+<p>Il primo passo per studiare i trend di ricerca di Wikipedia è stato ovviamente quello di ottenere dei dati utili a tale scopo. Le fonti principali utilizzate sono state sostanzialmente quattro: Wikipedia, Wikidata, ORES e Xtools (per i dettagli vedere le sezioni riguardanti la costruzione dei dataset). Queste sono state sfruttate, sia singolarmente che in maniera combinata, per andare ad ottenere tre distinti dataset finali, i quali costituiscono la base di questo progetto. La chiave di collegamento fra questi è l&rsquo;id numerico univoco associato a ciascuna pagina. I tre dataset sono così strutturati:</p>
+<ol>
+<li><strong>Top_pages</strong>: Dataset costituito dalle pagine più visitate per ciascun mese nel periodo di riferimento (2016-2020). Oltre questo è anche presente la singola pagina più visitata per ogni giorno di ciascun mese. La fonte utilizzata è stata Wikipedia. Per maggiori dettagli si faccia riferimento alla seguente <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/top_pages/">sezione</a>.
+<details >
+  <summary>Esempio documento</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">{ <span style="color:#e6db74">&#34;_id&#34;</span>: <span style="color:#ae81ff">201601</span>,
+  <span style="color:#e6db74">&#34;year&#34;</span>: <span style="color:#ae81ff">2016</span>,
+  <span style="color:#e6db74">&#34;month&#34;</span>: <span style="color:#ae81ff">1</span>,
+  <span style="color:#e6db74">&#34;top_month&#34;</span>: [
+    { <span style="color:#e6db74">&#34;article&#34;</span>: <span style="color:#e6db74">&#34;David_Bowie&#34;</span>,
+      <span style="color:#e6db74">&#34;views&#34;</span>: <span style="color:#ae81ff">13921255</span>,
+      <span style="color:#e6db74">&#34;page_id&#34;</span>: <span style="color:#ae81ff">8786</span> },
+    { <span style="color:#e6db74">&#34;article&#34;</span>: <span style="color:#e6db74">&#34;Bruce_Kingsbury&#34;</span>,
+      <span style="color:#e6db74">&#34;views&#34;</span>: <span style="color:#ae81ff">10478487</span>,
+      <span style="color:#e6db74">&#34;page_id&#34;</span>: <span style="color:#ae81ff">1225919</span> }, <span style="color:#f92672">...</span>
+  ], 
+  <span style="color:#e6db74">&#34;top_day&#34;</span>: [
+    { <span style="color:#e6db74">&#34;article&#34;</span>: <span style="color:#e6db74">&#34;List_of_stock_market_crashes_and_bear_markets&#34;</span>,
+      <span style="color:#e6db74">&#34;views&#34;</span>: <span style="color:#ae81ff">1876491</span>,
+      <span style="color:#e6db74">&#34;page_id&#34;</span>: <span style="color:#ae81ff">1080083</span>,
+      <span style="color:#e6db74">&#34;day_of_month&#34;</span>: <span style="color:#ae81ff">1</span> },
+    { <span style="color:#e6db74">&#34;article&#34;</span>: <span style="color:#e6db74">&#34;List_of_stock_market_crashes_and_bear_markets&#34;</span>,
+      <span style="color:#e6db74">&#34;views&#34;</span>: <span style="color:#ae81ff">1796346</span>,
+      <span style="color:#e6db74">&#34;page_id&#34;</span>: <span style="color:#ae81ff">1080083</span>,
+      <span style="color:#e6db74">&#34;day_of_month&#34;</span>: <span style="color:#ae81ff">2</span> }, <span style="color:#f92672">...</span>
+  ] }
+</code></pre></div>
+  </div>
+</details>
+</li>
+<li><strong>Page_topic</strong>: Dataset costituito dalle singole pagine Wikipedia presenti nel dataset delle pagine più visitate (in totale 9235). Contiene come valore principale la categoria d&rsquo;interesse nella quale la pagina è stata classificata. Le fonti utilizzate sono state Wikipedia, Wikidata e ORES. Per maggiori dettagli si faccia riferimento alla seguente <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/">sezione</a>.
+<details >
+  <summary>Esempio documento</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">{
+  <span style="color:#e6db74">&#34;_id&#34;</span>: <span style="color:#ae81ff">8786</span>,
+  <span style="color:#e6db74">&#34;article&#34;</span>: <span style="color:#e6db74">&#34;David_Bowie&#34;</span>,
+  <span style="color:#e6db74">&#34;rev_id&#34;</span>: <span style="color:#ae81ff">1016765293</span>,
+  <span style="color:#e6db74">&#34;wikidata_id&#34;</span>: <span style="color:#e6db74">&#34;Q5383&#34;</span>,
+  <span style="color:#e6db74">&#34;node_id&#34;</span>: <span style="color:#e6db74">&#34;Q5&#34;</span>,
+  <span style="color:#e6db74">&#34;page_type&#34;</span>: <span style="color:#e6db74">&#34;biography&#34;</span>,
+  <span style="color:#e6db74">&#34;ores_cat&#34;</span>: <span style="color:#e6db74">&#34;Culture.Media.Media*&#34;</span>,
+  <span style="color:#e6db74">&#34;category&#34;</span>: <span style="color:#e6db74">&#34;arts, culture and entertainment&#34;</span>,
+  <span style="color:#e6db74">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;British singer, musician, and actor (1947-2016)&#34;</span>
+}
+</code></pre></div>
+  </div>
+</details>
+</li>
+<li><strong>Page_info</strong>: Dataset costituito dalle singole pagine Wikipedia presenti nel dataset delle pagine più visitate (in totale 9235). Contiene le informazioni relative alla media di revisioni e di visite ottenute dalla pagina nel periodo di riferimento e la lunghezza espressa in numero totale di parole. Le fonti utilizzate sono state Wikipedia e Xtools. Per maggiori dettagli si faccia riferimento alla seguente sezione.
+<details >
+  <summary>Esempio documento</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">{
+  <span style="color:#e6db74">&#34;_id&#34;</span>: <span style="color:#ae81ff">8786</span>,
+  <span style="color:#e6db74">&#34;article&#34;</span>: <span style="color:#e6db74">&#34;David_Bowie&#34;</span>
+  <span style="color:#e6db74">&#34;mean_edits&#34;</span>: <span style="color:#ae81ff">68</span>,
+  <span style="color:#e6db74">&#34;mean_views&#34;</span>: <span style="color:#ae81ff">624384</span>,
+  <span style="color:#e6db74">&#34;words&#34;</span>: <span style="color:#ae81ff">15020</span>,
+  <span style="color:#e6db74">&#34;y_of_creation&#34;</span>: <span style="color:#e6db74">&#34;2001&#34;</span>,
+}
+</code></pre></div>
+  </div>
+</details>
+</li>
+</ol>
+<p>Il modello scelto per rappresentare i dati è stato quello di tipo documentale, appoggiandosi a MongoDB Atlas in modo da avere un facile accesso al database via cloud. Lo schema documentale è stato ritenuto il miglior metodo di rappresentazione in primis poiché tutte le fonti utilizzate si appoggiavano su API, le quali davano in output un file di tipo json. Inoltre lavorare su documenti ha garantito una maggior flessibilità e una migliore integrazione con le fasi di programmazione in Python. Ad ogni dataset è stata fatta corrispondere una specifica collezione.</p>
+<h2 id="utilizzo-dei-dati">
+  <strong>Utilizzo dei dati</strong>
+  <a class="anchor" href="#utilizzo-dei-dati">#</a>
+</h2>
+<p>Scaricare i dati tramite API permette di essere piuttosto liberi nell&rsquo;organizzare i dataset come meglio si crede. La scelta di ricorrere alla struttura &ldquo;tripartita&rdquo; prima presentata è dunque stata voluta, poiché ritenuta la migliore in ottica utilizzo dei dati, sia per l&rsquo;obiettivo del progetto, sia guardando ad una sua possibile evoluzione futura. In particolar modo si è tenuto conto dei seguenti vantaggi:</p>
+<ol>
+<li><strong>Accesso</strong>: avere i dati separati in più collezioni facilita le operazioni di ricerca e accesso ai dati. In particolar modo in questo progetto è emersa la necessità/volontà di accedere frequentemente a due principali aree informative: quella relativa alle pagine più viste nell&rsquo;arco di un mese (collezione <em>top_pages</em>) e quella riguardante le informazioni sulla singola pagina (collezione <em>page_topic</em> e <em>page_info</em>). Avendo le collezioni separate è stato possibile lavorare con facilità sui singoli aspetti, procedimento che al contrario si sarebbe di molto complicato se avessimo optato per una struttura <em>nasted</em>.</li>
+<li><strong>Aggiornamento</strong>: per rappresentare le relazioni tra i dati si è fatto affidamento prevalentemente sul <em>referncing</em>. Utilizzare questo tipo di soluzione modellistica rispetto all'<em>embedding</em> presenta principalmente il vantaggio di semplificare le operazioni di aggiornamento, in quanto occorre modificare solo un singolo documento. Essendo i dati contenuti nella collezione <em>page_info</em> variabili nel tempo si è così deciso, specie in ottica di miglioramenti futuri, di mantenere le collezioni separate in modo da snellire eventuali implementazioni di processi di aggiornamento automatico.</li>
+<li><strong>Utilizzo API</strong>: durante le prime fasi del progetto è emerso come la maggior parte dell&rsquo;API utilizzate, essendo pubbliche, avessero dei limiti in quanto a velocità e utilizzo continuativo. Se si fosse optato per una struttura aggregata, il numero di chiamate API per la fase di classificazione ed ottenimento delle informazioni sarebbe sensibilmente aumentato. Infatti, per le pagine ricorrenti ripetutamente nella collezione <em>top_pages</em> si sarebbero dovuti effettuare più set di chiamate API, uno per ogni volta che la pagina si fosse presentata. Mantenendo invece le collezioni separate è stato possibile eseguire le chiamate API solo una singola volta per pagina, salvando nella apposita collezione le informazioni ottenute e rifacendosi a queste qual ora la stessa pagina si fosse ripresentata successivamente. Infine, le collezioni relative alle pagine singole, ovvero <em>page_topic</em> e <em>page_info</em>, sono state mantenute separate per semplicità di programmazione ed evitare che errori nell&rsquo;acquisizione tramite API dell&rsquo;una andassero a portare problemi anche nell&rsquo;altra. In un contesto futuro più rodato si può tranquillamente pensare di ragionare su una sola specifica collezione per le pagine singole, situazione tra l&rsquo;altro accorsa nelle fasi finali di questo progetto.</li>
+</ol>
+<h2 id="join-delle-collezioni">
+  <strong>Join delle collezioni</strong>
+  <a class="anchor" href="#join-delle-collezioni">#</a>
+</h2>
+<p>Il principale svantaggio di questo <em>modus operandi</em> risiede nella necessità di dover eseguire dei join ogni qual volta si dovessero collegare le collezioni. Sfruttando però l&rsquo;indicizzazione tipica di MongoDB questo tipo di operazioni diventano piuttosto veloci e facilmente scalabili anche con elevati numeri di documenti, in quanto questi vengo organizzati in una lista ordinata e facilmente consultabile dal sistema. Per queste ragioni si è utilizzato per le collezioni <em>page_topic</em> e <em>page_info</em> l&rsquo;id di pagina come indice, così da facilitare il join tra queste due e con la collezione <em>top_pages</em>.</p>
+<p>La conferma di quanto detto in precedenza sta nei tempi di esecuzione degli script di join, i quali si attestano a poco più di un secondo per ogni documento nella collezione top_pages e a circa tre secondi e mezzo per il join tra le due collezioni riferite alla singola pagina. Considerando che questi tempi tengono conto anche della fase di pulizia dell&rsquo;output e soprattutto della fase di upload sul cloud (che è quella più onerosa), si evince facilmente come l&rsquo;operazione di join sia pressoché istantanea (all&rsquo;incirca 0.20 secondi).</p>
+<p>Inoltre, si è osservato che di mese in mese il numero di nuove pagine da inserire in queste due collezioni andava a diminuire, non dando dunque presupposti per particolari problemi riguardanti le performance di upload, le quali come è noto tendono a rallentare quando si indicizzano i documenti.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#i-dati"><strong>I Dati</strong></a>
+      <ul>
+        <li><a href="#struttura-dei-dataset"><strong>Struttura dei dataset</strong></a></li>
+        <li><a href="#utilizzo-dei-dati"><strong>Utilizzo dei dati</strong></a></li>
+        <li><a href="#join-delle-collezioni"><strong>Join delle collezioni</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
