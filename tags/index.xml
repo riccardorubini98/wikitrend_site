@@ -4,61 +4,6 @@
     <title>Tags on Wikitrend</title>
     <link>https://riccardorubini98.github.io/wikitrend_site/tags/</link>
     <description>Recent content in Tags on Wikitrend</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 02 Apr 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://riccardorubini98.github.io/wikitrend_site/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>development</title>
-      <link>https://riccardorubini98.github.io/wikitrend_site/tags/development/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://riccardorubini98.github.io/wikitrend_site/tags/development/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>go</title>
-      <link>https://riccardorubini98.github.io/wikitrend_site/tags/go/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://riccardorubini98.github.io/wikitrend_site/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>golang</title>
-      <link>https://riccardorubini98.github.io/wikitrend_site/tags/golang/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://riccardorubini98.github.io/wikitrend_site/tags/golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hugo</title>
-      <link>https://riccardorubini98.github.io/wikitrend_site/tags/hugo/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://riccardorubini98.github.io/wikitrend_site/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>templates</title>
-      <link>https://riccardorubini98.github.io/wikitrend_site/tags/templates/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://riccardorubini98.github.io/wikitrend_site/tags/templates/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>themes</title>
-      <link>https://riccardorubini98.github.io/wikitrend_site/tags/themes/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://riccardorubini98.github.io/wikitrend_site/tags/themes/</guid>
-      <description></description>
-    </item>
-    
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://riccardorubini98.github.io/wikitrend_site/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
