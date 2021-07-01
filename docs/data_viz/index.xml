@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Visualization on Wikitrend</title>
+    <link>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/</link>
+    <description>Recent content in Data Visualization on Wikitrend</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Infografica 1</title>
+      <link>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/trend_viz/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/trend_viz/</guid>
+      <description>Infografica sui trend di ricerca #  Panoramica generale #  Il primo obiettivo che si è voluto affrontare in questo progetto è stato quello della creazione di un&amp;rsquo;infografica atta all&amp;rsquo;analisi del comportamento e dei trend di ricerca degli utenti della Wikipedia in lingua inglese. I dati dai quali si è partiti per costruire la visualizzazione sono stati le 500 pagine più viste sulla piattaforma per mese nel periodo 2016-2020, alle quali si sono aggiunte anche le singole pagine con più visualizzazioni per ogni giorno.</description>
+    </item>
+    
+    <item>
+      <title>Valutazione visualizzazioni</title>
+      <link>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/assessesment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/assessesment/</guid>
+      <description>Valutazione visualizzazioni #  Le due infografiche sono state valutate in tre differenti passaggi, i quali hanno dato importanti indicazioni riguardo qualità, efficacia, efficienza e possibilità di miglioramento delle visualizzazioni.
+Valutazione euristica #  La prima valutazione fatta sulle due infografiche è stata quella euristica. Si sono selezioni 4 utenti, i quali hanno interagito liberamente con le visualizzazioni, commentando ad alta voce ogni loro azione e ogni loro perplessità/difficoltà incontrata. Da questi commenti sono emersi sostanzialmente due punti:</description>
+    </item>
+    
+    <item>
+      <title>Conclusioni</title>
+      <link>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/conclusion/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/conclusion/</guid>
+      <description>Conclusioni progetto #  Domanda 1 - Trend di ricerca #  Dallo studio della prima infografica si possono trarre alcune conclusioni di natura generale:
+ La categoria più ricercata nei vari mesi è quella relativa al mondo dell&amp;rsquo;arte e dell&amp;rsquo;intrattenimento, trainata principalmente dalle pagine riguardanti film, serie tv e personaggi dello spettacolo. Si è specialmente notato come tra le prime posizioni delle pagine più viste per mese finiscano quasi sempre almeno due o tre pagine inerenti ai film più importanti in sala e serie tv appena rilasciate, probabilmente per il fatto che gli utenti cerchino informazioni per scegliere se vedere quel determinato prodotto o soddisfare curiosità (ad es.</description>
+    </item>
+    
+  </channel>
+</rss>
