@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.84.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Test velocità di accesso ai dati #  In questa pagina viene presentato il codice python nel quale si andrà a testare la velocità di reperimento dei dati dai vari endpoints delle API già menzionate. In pratica, si prende in prestito il codice utilizzato nella prima parte del task, rimaneggiandolo in alcune parti tra cui la parte finale (quella che coinvolge le tre funzioni async, senza chiamare in causa un Kafka Producer) per misurare successivamente il tempo di reperimento dati aiutandosi con la libreria time.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Test Velocità" />
+<meta property="og:description" content="Test velocità di accesso ai dati #  In questa pagina viene presentato il codice python nel quale si andrà a testare la velocità di reperimento dei dati dai vari endpoints delle API già menzionate. In pratica, si prende in prestito il codice utilizzato nella prima parte del task, rimaneggiandolo in alcune parti tra cui la parte finale (quella che coinvolge le tre funzioni async, senza chiamare in causa un Kafka Producer) per misurare successivamente il tempo di reperimento dati aiutandosi con la libreria time." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/test_velocit%C3%A0/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Test Velocità | Wikitrend</title>
+<link rel="manifest" href="https://riccardorubini98.github.io/wikitrend_site/manifest.json">
+<link rel="icon" href="https://riccardorubini98.github.io/wikitrend_site/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://riccardorubini98.github.io/wikitrend_site/book.min.e935e20bd0d469378cb482f0958edf258c731a4f895dccd55799c6fbc8043f23.css" integrity="sha256-6TXiC9DUaTeMtILwlY7fJYxzGk&#43;JXczVV5nG&#43;8gEPyM="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://riccardorubini98.github.io/wikitrend_site/"><img src="https://riccardorubini98.github.io/wikitrend_site/wikitrend_logo.svg" alt="Logo" /><span>Wikitrend</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Data Management</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/data_structure/" class="">Dati</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/top_pages/" class="">Articoli più cercati per mese</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-67d9e14beb5c9195b060ad752f05072e" class="toggle"  />
+    <label for="section-67d9e14beb5c9195b060ad752f05072e" class="flex justify-between">
+      <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/" class="">Classificazione pagine</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/classifier_code/" class="">Codice Classificatore</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/class_accuracy/" class="">Valutazione Classificatore</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/page_description/" class="">Descrizione pagine</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ae33f183980c9a2e4beabca41a891594" class="toggle" checked />
+    <label for="section-ae33f183980c9a2e4beabca41a891594" class="flex justify-between">
+      <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/" class="">Informazioni pagine</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte1/" class="">Parte 1</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte2/" class="">Parte 2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/test_velocit%C3%A0/" class=" active">Test Velocità</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Data Visualization</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/trend_viz/" class="">Infografica 1</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/scatterplot_viz/" class="">Infografica 2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/assessesment/" class="">Valutazione visualizzazioni</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/conclusion/" class="">Conclusioni</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://riccardorubini98.github.io/wikitrend_site/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Test Velocità</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://riccardorubini98.github.io/wikitrend_site/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#test-velocità-di-accesso-ai-dati"><strong>Test velocità di accesso ai dati</strong></a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="test-velocità-di-accesso-ai-dati">
+  <strong>Test velocità di accesso ai dati</strong>
+  <a class="anchor" href="#test-velocit%c3%a0-di-accesso-ai-dati">#</a>
+</h1>
+<p>In questa pagina viene presentato il codice python nel quale si andrà a testare la velocità di reperimento dei dati dai vari endpoints delle API già menzionate.
+In pratica, si prende in prestito il codice utilizzato nella prima parte del task, rimaneggiandolo in alcune parti tra cui la parte finale (quella che coinvolge le tre funzioni <em>async</em>, senza chiamare in causa un Kafka Producer) per misurare successivamente il tempo di reperimento dati aiutandosi con la libreria <em>time</em>. In questo caso, non si andrà a lavorare sulla totalità delle pagine wiki ma su un subset di 400 pagine selezionate randomicamente (il totale di urls a cui si farà richiesta ammonterà, pertanto, a 3600).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pip install pymongo[srv]
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pip install aiohttp
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pip install async_retrying
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> urllib.parse
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_urls</span>(page_name):
+  l<span style="color:#f92672">=</span>[]
+  years <span style="color:#f92672">=</span> [(<span style="color:#e6db74">&#39;20150701&#39;</span>,<span style="color:#e6db74">&#39;20151231&#39;</span>),(<span style="color:#e6db74">&#39;20160101&#39;</span>,<span style="color:#e6db74">&#39;20161231&#39;</span>),(<span style="color:#e6db74">&#39;20170101&#39;</span>,<span style="color:#e6db74">&#39;20171231&#39;</span>),(<span style="color:#e6db74">&#39;20180101&#39;</span>,<span style="color:#e6db74">&#39;20181231&#39;</span>),
+          (<span style="color:#e6db74">&#39;20190101&#39;</span>,<span style="color:#e6db74">&#39;20191231&#39;</span>),(<span style="color:#e6db74">&#39;20200101&#39;</span>,<span style="color:#e6db74">&#39;20201231&#39;</span>)]
+  <span style="color:#66d9ef">for</span> year <span style="color:#f92672">in</span> years:
+    url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://wikimedia.org/api/rest_v1/metrics/edits/per-page/en.wikipedia/&#39;</span><span style="color:#f92672">+</span>urllib<span style="color:#f92672">.</span>parse<span style="color:#f92672">.</span>quote(page_name, safe<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;/all-editor-types/monthly/&#39;</span><span style="color:#f92672">+</span>year[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;/&#39;</span><span style="color:#f92672">+</span>year[<span style="color:#ae81ff">1</span>]
+    l<span style="color:#f92672">.</span>append(url)
+  
+  views <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia.org/all-access/all-agents/&#39;</span><span style="color:#f92672">+</span>urllib<span style="color:#f92672">.</span>parse<span style="color:#f92672">.</span>quote(page_name, safe<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;/monthly/20150701/20201231&#39;</span>
+  prose <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://xtools.wmflabs.org/api/page/prose/en.wikipedia.org/&#39;</span><span style="color:#f92672">+</span>urllib<span style="color:#f92672">.</span>parse<span style="color:#f92672">.</span>quote(page_name, safe<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>)
+  creation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://xtools.wmflabs.org/api/page/articleinfo/en.wikipedia.org/&#39;</span><span style="color:#f92672">+</span>urllib<span style="color:#f92672">.</span>parse<span style="color:#f92672">.</span>quote(page_name, safe<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>)
+
+  l<span style="color:#f92672">.</span>append(views)
+  l<span style="color:#f92672">.</span>append(prose)
+  l<span style="color:#f92672">.</span>append(creation)
+  <span style="color:#66d9ef">return</span> l
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> pymongo <span style="color:#f92672">import</span> MongoClient
+client <span style="color:#f92672">=</span> MongoClient(<span style="color:#e6db74">&#34;mongodb+srv://alfredo_galli:DMDV_2021@wikitrend.15i9s.mongodb.net/myFirstDatabase?retryWrites=true&amp;w=majority&#34;</span>)
+<span style="color:#75715e"># DB selection</span>
+db <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_database(<span style="color:#e6db74">&#39;wikitrend&#39;</span>)
+<span style="color:#75715e"># Selection of input collection</span>
+input <span style="color:#f92672">=</span> db<span style="color:#f92672">.</span>page_topic
+</code></pre></div><p>Nel chunk sottostante viene realizzata la lista di liste <em>urls_test</em>, riferita a 400 pagine wiki selezionate randomicamente a partire dall&rsquo;intero insieme di pagine.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> random <span style="color:#75715e"># random selection of 400 numbers (without replacement) which goes from 0 to 9234</span>
+randomlist <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>sample(range(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">9235</span>), <span style="color:#ae81ff">400</span>)
+n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+names <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> doc <span style="color:#f92672">in</span> input<span style="color:#f92672">.</span>find():
+  <span style="color:#66d9ef">if</span> n <span style="color:#f92672">in</span> randomlist:
+    names<span style="color:#f92672">.</span>append(doc[<span style="color:#e6db74">&#39;article&#39;</span>])
+  n<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+
+urls_test <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> name <span style="color:#f92672">in</span> names:
+  urls_test<span style="color:#f92672">.</span>append(get_urls(name))
+</code></pre></div><p>Nel chunk sottostante vengono effettuate le richieste agli endpoints nelle modalità già descritte. Il tempo di esecuzione della procedura (in sec) viene stampato in coda al codice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> asyncio
+<span style="color:#f92672">import</span> aiohttp
+<span style="color:#f92672">import</span> time
+<span style="color:#f92672">from</span> async_retrying <span style="color:#f92672">import</span> retry
+<span style="color:#f92672">import</span> nest_asyncio
+nest_asyncio<span style="color:#f92672">.</span>apply()
+
+<span style="color:#a6e22e">@retry</span>(attempts<span style="color:#f92672">=</span><span style="color:#ae81ff">5000</span>)
+<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get</span>(url, session):
+  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>get(url) <span style="color:#66d9ef">as</span> resp:
+      resp<span style="color:#f92672">.</span>raise_for_status()
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> resp<span style="color:#f92672">.</span>json()
+
+<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fetch</span>(urls):
+  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiohttp<span style="color:#f92672">.</span>ClientSession() <span style="color:#66d9ef">as</span> session:
+      tasks <span style="color:#f92672">=</span> [get(url, session) <span style="color:#66d9ef">for</span> url <span style="color:#f92672">in</span> urls]
+      <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>gather(<span style="color:#f92672">*</span>tasks)
+
+<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(tot_urls):
+  cors <span style="color:#f92672">=</span> [fetch(urls) <span style="color:#66d9ef">for</span> urls <span style="color:#f92672">in</span> tot_urls]
+  <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>gather(<span style="color:#f92672">*</span>cors)
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+  start <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+  asyncio<span style="color:#f92672">.</span>run(main(urls_test))
+  end <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+  print(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> secondi&#39;</span> <span style="color:#f92672">%</span> (end <span style="color:#f92672">-</span> start))
+</code></pre></div><pre><code>294 secondi
+</code></pre>
+<p>Com&rsquo;è mostrato, il tempo di esecuzione ammonta a 294 sec. Bisogna precisare che il tempo di esecuzione dipende anche dallo stato degli endpoints (talvolta la loro &ldquo;reattività&rdquo; è maggiore, altre volte invece è necessario effettuare diversi tentativi prima di ottenere i dati e questo evidentemente ha un impatto sul tempo di reperimento degli stessi). Ad esempio, in altre occasioni in cui si è effettuato il test il tempo di esecuzione è risultato compreso tra gli 80 e i 120 secondi (chiediamo al lettore un atto di fede circa queste dichiarazioni!).</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#test-velocità-di-accesso-ai-dati"><strong>Test velocità di accesso ai dati</strong></a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

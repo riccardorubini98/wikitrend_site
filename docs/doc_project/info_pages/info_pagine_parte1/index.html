@@ -5,10 +5,10 @@
   <meta name="generator" content="Hugo 0.84.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Informazioni pagine - Parte 2 #  In questa pagina viene presentato il codice python che si è reso necessario per portare a termine la prima parte del task, vale a dire l&rsquo;ottenimento dei dati di interesse (per ogni pagina wiki), realizzazione dei rispettivi documenti json e la loro immissione sulla coda Kafka ad opera di un Kafka Producer. Sotto sono riportati i vari passi della procedura.
+<meta name="description" content="Informazioni pagine - Parte 1 #  In questa pagina viene presentato il codice python che si è reso necessario per portare a termine la prima parte del task, vale a dire l&rsquo;ottenimento dei dati di interesse (per ogni pagina wiki), realizzazione dei rispettivi documenti json e la loro immissione sulla coda Kafka ad opera di un Kafka Producer. Sotto sono riportati i vari passi della procedura.
 Installazione delle librerie necessarie #  pip install pymongo[srv] pip install aiohttp pip install asyncio pip install async_retrying pip install kafka-python Collegamento a MongoDB #  Nel chunk sottostante avviene dapprima il collegamento alla piattaforma mongodbatlas; successivamente, si realizza l&rsquo;accesso al database wikitrend ed infine alla collezione di interesse, page_topic, istanziata col nome input.">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Parte 1" />
-<meta property="og:description" content="Informazioni pagine - Parte 2 #  In questa pagina viene presentato il codice python che si è reso necessario per portare a termine la prima parte del task, vale a dire l&rsquo;ottenimento dei dati di interesse (per ogni pagina wiki), realizzazione dei rispettivi documenti json e la loro immissione sulla coda Kafka ad opera di un Kafka Producer. Sotto sono riportati i vari passi della procedura.
+<meta property="og:description" content="Informazioni pagine - Parte 1 #  In questa pagina viene presentato il codice python che si è reso necessario per portare a termine la prima parte del task, vale a dire l&rsquo;ottenimento dei dati di interesse (per ogni pagina wiki), realizzazione dei rispettivi documenti json e la loro immissione sulla coda Kafka ad opera di un Kafka Producer. Sotto sono riportati i vari passi della procedura.
 Installazione delle librerie necessarie #  pip install pymongo[srv] pip install aiohttp pip install asyncio pip install async_retrying pip install kafka-python Collegamento a MongoDB #  Nel chunk sottostante avviene dapprima il collegamento alla piattaforma mongodbatlas; successivamente, si realizza l&rsquo;accesso al database wikitrend ed infine alla collezione di interesse, page_topic, istanziata col nome input." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte1/" /><meta property="article:section" content="docs" />
@@ -200,6 +200,19 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/test_velocit%C3%A0/" class="">Test Velocità</a>
+  
+
+        </li>
+      
+    
   </ul>
 
         </li>
@@ -332,7 +345,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#informazioni-pagine---parte-2"><strong>Informazioni pagine - Parte 2</strong></a>
+    <li><a href="#informazioni-pagine---parte-1"><strong>Informazioni pagine - Parte 1</strong></a>
       <ul>
         <li><a href="#installazione-delle-librerie-necessarie"><strong>Installazione delle librerie necessarie</strong></a></li>
         <li><a href="#collegamento-a-mongodb"><strong>Collegamento a MongoDB</strong></a></li>
@@ -353,9 +366,9 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="informazioni-pagine---parte-2">
-  <strong>Informazioni pagine - Parte 2</strong>
-  <a class="anchor" href="#informazioni-pagine---parte-2">#</a>
+  <article class="markdown"><h1 id="informazioni-pagine---parte-1">
+  <strong>Informazioni pagine - Parte 1</strong>
+  <a class="anchor" href="#informazioni-pagine---parte-1">#</a>
 </h1>
 <p>In questa pagina viene presentato il codice python che si è reso necessario per portare a termine la prima parte del task, vale a dire l&rsquo;ottenimento dei dati di interesse (per ogni pagina wiki), realizzazione dei rispettivi documenti json e la loro immissione sulla coda Kafka ad opera di un Kafka Producer. Sotto sono riportati i vari passi della procedura.</p>
 <h2 id="installazione-delle-librerie-necessarie">
@@ -471,7 +484,9 @@ print(diz)
   <a class="anchor" href="#inizializzazione-kafka-producer">#</a>
 </h2>
 <p>Nel breve codice sottostante viene inizializzato un Kafka Producer, che successivamente sarà adibito alla scrittura dei dati sulla coda Kafka. Il dato in un input viene convertito in un file <em>json</em> e codificato in utf-8.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">producer <span style="color:#f92672">=</span> KafkaProducer(bootstrap_servers<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;kafka:9092&#39;</span>], <span style="color:#75715e"># This piece of code initializes a new Kafka Producer</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> json <span style="color:#f92672">import</span> dumps
+<span style="color:#f92672">from</span> kafka <span style="color:#f92672">import</span> KafkaProducer
+producer <span style="color:#f92672">=</span> KafkaProducer(bootstrap_servers<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;kafka:9092&#39;</span>], <span style="color:#75715e"># This piece of code initializes a new Kafka Producer</span>
                          value_serializer<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: 
                          dumps(x)<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#39;utf-8&#39;</span>))
 </code></pre></div><h2 id="download-dei-dati-di-interesse-e-scrittura-su-kafka">
@@ -518,7 +533,7 @@ nest_asyncio<span style="color:#f92672">.</span>apply()
       producer<span style="color:#f92672">.</span>send(<span style="color:#e6db74">&#39;trial&#39;</span>, value <span style="color:#f92672">=</span> d)  <span style="color:#75715e">#producer sends the data to the topic trial</span>
 
 <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(tot_urls):
-  cors <span style="color:#f92672">=</span> [fetch(urls) <span style="color:#66d9ef">for</span> urls <span style="color:#f92672">in</span> tot_urls]
+  cors <span style="color:#f92672">=</span> [fetch(urls, producer) <span style="color:#66d9ef">for</span> urls <span style="color:#f92672">in</span> tot_urls]
   <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>gather(<span style="color:#f92672">*</span>cors)
 
 <span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
@@ -559,7 +574,7 @@ nest_asyncio<span style="color:#f92672">.</span>apply()
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#informazioni-pagine---parte-2"><strong>Informazioni pagine - Parte 2</strong></a>
+    <li><a href="#informazioni-pagine---parte-1"><strong>Informazioni pagine - Parte 1</strong></a>
       <ul>
         <li><a href="#installazione-delle-librerie-necessarie"><strong>Installazione delle librerie necessarie</strong></a></li>
         <li><a href="#collegamento-a-mongodb"><strong>Collegamento a MongoDB</strong></a></li>

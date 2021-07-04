@@ -78,7 +78,7 @@ Codice Python #  Importo librerie necessarie.</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte1/</guid>
-      <description>Informazioni pagine - Parte 2 #  In questa pagina viene presentato il codice python che si è reso necessario per portare a termine la prima parte del task, vale a dire l&amp;rsquo;ottenimento dei dati di interesse (per ogni pagina wiki), realizzazione dei rispettivi documenti json e la loro immissione sulla coda Kafka ad opera di un Kafka Producer. Sotto sono riportati i vari passi della procedura.
+      <description>Informazioni pagine - Parte 1 #  In questa pagina viene presentato il codice python che si è reso necessario per portare a termine la prima parte del task, vale a dire l&amp;rsquo;ottenimento dei dati di interesse (per ogni pagina wiki), realizzazione dei rispettivi documenti json e la loro immissione sulla coda Kafka ad opera di un Kafka Producer. Sotto sono riportati i vari passi della procedura.
 Installazione delle librerie necessarie #  pip install pymongo[srv] pip install aiohttp pip install asyncio pip install async_retrying pip install kafka-python Collegamento a MongoDB #  Nel chunk sottostante avviene dapprima il collegamento alla piattaforma mongodbatlas; successivamente, si realizza l&amp;rsquo;accesso al database wikitrend ed infine alla collezione di interesse, page_topic, istanziata col nome input.</description>
     </item>
     
@@ -90,6 +90,15 @@ Installazione delle librerie necessarie #  pip install pymongo[srv] pip install 
       <guid>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte2/</guid>
       <description>Informazioni pagine - Parte 2 #  In questa pagina viene riportata la porzione di codice python che realizza la seconda parte del task, vale a dire lettura (e fruizione) dei documenti json da parte di un Kafka Consumer che provvede al loro caricamento sulla collezione MongoDB page_info (facente sempre parte del DB wikitrend).
 Installazione librerie necessarie #  pip install kafka-python Collegamento a MongoDB #  Nel chunk qui sotto, come da prassi, dapprima avviene il collegamento alla piattaforma mongodbatlas, successivamente viene inizializzata la nuova collezione di output, page_info, che ospiterà i documenti contenenti le info delle pagine wiki.</description>
+    </item>
+    
+    <item>
+      <title>Test Velocità</title>
+      <link>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/test_velocit%C3%A0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/test_velocit%C3%A0/</guid>
+      <description>Test velocità di accesso ai dati #  In questa pagina viene presentato il codice python nel quale si andrà a testare la velocità di reperimento dei dati dai vari endpoints delle API già menzionate. In pratica, si prende in prestito il codice utilizzato nella prima parte del task, rimaneggiandolo in alcune parti tra cui la parte finale (quella che coinvolge le tre funzioni async, senza chiamare in causa un Kafka Producer) per misurare successivamente il tempo di reperimento dati aiutandosi con la libreria time.</description>
     </item>
     
     <item>
