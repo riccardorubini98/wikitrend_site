@@ -157,6 +157,54 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ae33f183980c9a2e4beabca41a891594" class="toggle"  />
+    <label for="section-ae33f183980c9a2e4beabca41a891594" class="flex justify-between">
+      <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/" class="">Informazioni pagine</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte1/" class="">Parte 1</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte2/" class="">Parte 2</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
   </ul>
 
         </li>
@@ -183,6 +231,19 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/trend_viz/" class="">Infografica 1</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/scatterplot_viz/" class="">Infografica 2</a>
   
 
         </li>
@@ -274,6 +335,17 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#valutazione-visualizzazioni"><strong>Valutazione visualizzazioni</strong></a>
       <ul>
         <li><a href="#valutazione-euristica"><strong>Valutazione euristica</strong></a></li>
+        <li><a href="#questionario-psicometrico"><strong>Questionario psicometrico</strong></a>
+          <ul>
+            <li><a href="#risultati"><strong>Risultati</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#user-test"><strong>User test</strong></a>
+          <ul>
+            <li><a href="#efficienza"><strong>Efficienza</strong></a></li>
+            <li><a href="#efficacia"><strong>Efficacia</strong></a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -302,6 +374,153 @@ https://github.com/alex-shpak/hugo-book
 <li>Per la versione inziale della primo infografica si era deciso di inserire nel dotplot una linea tratteggiata che indentificasse il percentile al 99% delle views calcolato su tutte le pagine (non solo quelle del mese scelto ma di tutti i mesi), in modo da poter mettere in risalto quelle pagine che in un mese avessero raggiunto un totale di visualizzazioni complessivamente elevato. Questa linea era corredata dalla dicitura <em>Very famous pages, viewed in a month more than 99% of the other pages</em>. Dai commenti degli utenti è emerso come questa linea di primo impatto fosse di non semplice comprensione e anche una volta capito il senso non la hanno ritenuta particolarmente utile. Si è dunque deciso di eliminarla dal grafico.</li>
 <li>Nella seconda infografica è emerso come gli utenti avessero difficoltà a comprendere appieno cosa si intendesse con <em>punti anomali</em>, portando dunque a difficoltà nell&rsquo;interpretare il grafico. Per ovviare a questo problema si è deciso di inserire delle legende dinamiche che, a seconda della dimensione di colore selezionata, andassero a specificare con una breve didascalia cosa fossero i punti selezionati, gli anni di creazione e così via.</li>
 </ol>
+<h2 id="questionario-psicometrico">
+  <strong>Questionario psicometrico</strong>
+  <a class="anchor" href="#questionario-psicometrico">#</a>
+</h2>
+<p>Il secondo step della valutazione ha previsto la somministrazione di un questionario a 25 individui. Esso è disponibile al seguente <a href="https://forms.gle/EHp69d2QuHXNamAa7">link</a>. L&rsquo;obiettivo è stato quello di codificare le opinioni degli utenti riguardo a differenti &ldquo;parametri&rdquo; connessi alle infografiche:</p>
+<ul>
+<li>chiarezza</li>
+<li>utilità</li>
+<li>informatività</li>
+<li>bellezza (estetica)</li>
+</ul>
+<p>Tali aspetti sono stati valutati utilizzando una scala tipica della ricerca psicometrica, la quale prevede 6 modalità di risposta (numerate da 1 a 6) che esprimono gradualmente e in senso crescente il livello di apprezzamento/assenso relativamente a ciascun aspetto. 
+Infine, veniva richiesto agli individui di esprimere un giudizio complessivo, ugualmente codificato mediante la scala numerata da 1 a 6.</p>
+<h3 id="risultati">
+  <strong>Risultati</strong>
+  <a class="anchor" href="#risultati">#</a>
+</h3>
+<h4 id="infografica-1">
+  <strong>Infografica 1</strong>
+  <a class="anchor" href="#infografica-1">#</a>
+</h4>
+<p>Le distribuzioni dei risultati relativi alla prima infografica sono riportati nella figura sottostante, mediante l&rsquo;uso dei <em>violin plots</em>.</p>
+<div style="align: left; text-align:center;">
+  <img src="https://riccardorubini98.github.io/wikitrend_site/info1_violini.svg" 
+  title = "Violin plot infografica 1" />
+  <span style="display:block;"><i><small>Violin plot infografica 1</small></i> </span>
+</div>
+<p>Dai grafici si può dedurre che in generale il livello di apprezzamento/assenso rispetto ai quattro parametri non è stato particolarmente elevato ( forse ci si poteva attendere qualcosa di meglio) e il giudizio complessivo ha ricevuto prevalentemente un punteggio di 4/6 (discreto). Tuttavia, è doveroso puntualizzare che questa infografica (come quella successiva) è orientata verso una sua fruizione dinamica e interattiva; al contrario, il questionario si propone di valutare la qualità dell&rsquo;infografica (e anche quella successiva) in una sua versione &ldquo;statica&rdquo;, che certamente non è paragonabile all&rsquo;analoga dinamica. Fatta questa precisazione, ora si analizzano le relazioni fra i vari punteggi servendosi del <em>corrplot</em>, che visualizza le correlazioni fra le quantità in gioco. Il <em>corrplot</em> è riportato nella figura sottostante.</p>
+<div style="align: left; text-align:center;">
+  <img src="https://riccardorubini98.github.io/wikitrend_site/corplot_1.svg" 
+  title = "Corrplot infografica 1" />
+  <span style="display:block;"><i><small>Corrplot infografica 1</small></i> </span>
+</div>
+<p>Com&rsquo;era intuibile, le correlazioni tra i vari punteggi hanno tutte segno positivo, e questo sta  a significare che tra i vari aspetti vi è, in linea generale, una concordanza di giudizio (ovvero, ad esempio, un rispondente che giudica l&rsquo;infografica molto chiara tende a giudicarla molto informativa e viceversa).</p>
+<h4 id="infografica-2">
+  <strong>Infografica 2</strong>
+  <a class="anchor" href="#infografica-2">#</a>
+</h4>
+<p>Analogamente al caso precedente, le distribuzioni dei risultati relativi alla seconda infografica sono riportati nella figura sottostante, mediante il consueto uso dei <em>violin plots</em>.</p>
+<div style="align: left; text-align:center;">
+  <img src="https://riccardorubini98.github.io/wikitrend_site/info2_violini.svg" 
+  title = "Violin plot infografica 2" />
+  <span style="display:block;"><i><small>Violin plot infografica 2</small></i> </span>
+</div>
+<p>Anche in questo caso, i punteggi dati non sono stati particolarmente elevati ma valgono, come già accennato, le considerazioni fatte poc&rsquo;anzi circa la staticità della versione dell&rsquo;infografica somministrata ai rispondenti. Sotto è riportato il <em>corrplot</em> delle correlazioni tra i punteggi.</p>
+<div style="align: left; text-align:center;">
+  <img src="https://riccardorubini98.github.io/wikitrend_site/corplot_2.svg" 
+  title = "Corrplot infografica 2" />
+  <span style="display:block;"><i><small>Corrplot infografica 2</small></i> </span>
+</div>
+<p>Le correlazioni mostrano esclusivamente segni positivi come nel caso precedente, con la differenza che qui la &ldquo;magnitudine&rdquo; delle stesse è generalmente elevata (tutti i pallini mostrano delle colorazioni piuttosto accentuate). Questo sta a significare che la concordanza di giudizio è complessivamente ancor più accentuata.</p>
+<h2 id="user-test">
+  <strong>User test</strong>
+  <a class="anchor" href="#user-test">#</a>
+</h2>
+<p>L&rsquo;ultimo passaggio eseguito per la valutazione delle due visualizzazioni è stato il <em>test utente</em>, atto a misurare quantitativamente l&rsquo;efficienza e l&rsquo;efficacia delle infografiche attraverso la somministrazione di quattro differenti task (due per infografica) ad un cluster di sei utenti, valutando il tempo di esecuzione e la correttezza della risosta data. Le quattro task, create in modo da valutare diverse caratteristiche delle due visualizzazioni, sono le seguenti (1 e 2 per la prima infografica, 4 e 5 per la seconda):</p>
+<ol>
+<li>Qual è la pagina, sia in assoluto che sportiva, con più visualizzazioni mensili a novembre 2020? (Risposta: <em>Donald Trump e Diego Armando Maradona</em>)</li>
+<li>In quale mese del 2016 la categoria <em>sport</em> ha avuto il maggior numero di visualizzazioni? (Risposta: <em>agosto</em>)</li>
+<li>Qual è la pagina della categoria STEM nel quadrante dove sono situati i punti con più alto numero di views ed edits ad avere il maggior numero di visualizzazioni medie mensili? Quante modifiche riceve mediamente questa pagina ogni mese? (Risposta: <em>Covid_19_pandemic con 1823 edits medie ogni mese</em>)</li>
+<li>Tra le pagine sportive create tra il 2015 e il 2020, qual è quella con la più alta media di visite mensili? (Risposta: <em>Kylian Mbappé</em>)</li>
+</ol>
+<h3 id="efficienza">
+  <strong>Efficienza</strong>
+  <a class="anchor" href="#efficienza">#</a>
+</h3>
+<p>Nella tabella sottostante sono presenti i tempi di esecuzione (espressi in secondi) delle task per ciascun utente:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th>task1</th>
+<th>task2</th>
+<th>task3</th>
+<th>task4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">U1</td>
+<td>36</td>
+<td>16</td>
+<td>38</td>
+<td>59</td>
+</tr>
+<tr>
+<td style="text-align:right">U2</td>
+<td>38</td>
+<td>10</td>
+<td>20</td>
+<td>24</td>
+</tr>
+<tr>
+<td style="text-align:right">U3</td>
+<td>11</td>
+<td>9</td>
+<td>11</td>
+<td>20</td>
+</tr>
+<tr>
+<td style="text-align:right">U4</td>
+<td>12</td>
+<td>8</td>
+<td>15</td>
+<td>10</td>
+</tr>
+<tr>
+<td style="text-align:right">U5</td>
+<td>38</td>
+<td>11</td>
+<td>6</td>
+<td>4</td>
+</tr>
+<tr>
+<td style="text-align:right">U6</td>
+<td>92</td>
+<td>30</td>
+<td>35</td>
+<td>37</td>
+</tr>
+<tr>
+<td style="text-align:right">Media</td>
+<td>37.83</td>
+<td>14</td>
+<td>20.83</td>
+<td>25.67</td>
+</tr>
+</tbody>
+</table>
+<p>I medesimi risultati sono espressi graficamente nel <em>violin plot</em> sottostante, dove ogni punto rappresenta il tempo di un singolo utente:</p>
+<div style="align: left; text-align:center;">
+  <img src="https://riccardorubini98.github.io/wikitrend_site/task_violini.svg" 
+  title = "Violin plot esecuzione task" />
+  <span style="display:block;"><i><small>Violin plot esecuzione task</small></i> </span>
+</div>
+<p>Come si può notare la task che tra i sei utenti ha richiesto mediamente più tempo per essere eseguita è stata la prima, con un tempo medio di 37.83 secondi, precedendo la task numero 4 con 25.67 secondi medi d&rsquo;esecuzione. Nella prime due task inoltre è presente un utente (il 6) il quale ha impiegato sensibilmente più tempo degli altri per portare a termine il compito, tanto è vero che nei grafici emerge come outlier. Tolto questo caso, nel complesso i crono emersi sono da ritenersi abbastanza soddisfacenti.</p>
+<h3 id="efficacia">
+  <strong>Efficacia</strong>
+  <a class="anchor" href="#efficacia">#</a>
+</h3>
+<p>I dati relativi alla corretta esecuzione delle quattro task da parte dei sei utenti sono riportati nell&rsquo;immagine sottostante:</p>
+<div style="align: left; text-align:center;">
+  <img src="https://riccardorubini98.github.io/wikitrend_site/error_task.svg" 
+  title = "Violin plot esecuzione task" />
+  <span style="display:block;"><i><small>Violin plot esecuzione task</small></i> </span>
+</div>
+<p>Dal grafico (il quale mostra anche le barre d&rsquo;errore con confidenza al 95%) emerge come le prime due task siano state portate a termine in maniera corretta da tutti gli utenti, mentre per la terza si sono verificati due errori e infine per la quarta uno solo. Anche in questo caso i risultati non fanno pensare alla presenza di particolari criticità nell&rsquo;efficacia delle visualizzazioni, anche perché gli errori commessi sono stati per lo più frutto di sviste piuttosto che di scorretti approcci al grafico.</p>
 </article>
  
       
@@ -341,6 +560,17 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#valutazione-visualizzazioni"><strong>Valutazione visualizzazioni</strong></a>
       <ul>
         <li><a href="#valutazione-euristica"><strong>Valutazione euristica</strong></a></li>
+        <li><a href="#questionario-psicometrico"><strong>Questionario psicometrico</strong></a>
+          <ul>
+            <li><a href="#risultati"><strong>Risultati</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#user-test"><strong>User test</strong></a>
+          <ul>
+            <li><a href="#efficienza"><strong>Efficienza</strong></a></li>
+            <li><a href="#efficacia"><strong>Efficacia</strong></a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>

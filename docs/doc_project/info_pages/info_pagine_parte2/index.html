@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.84.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Informazioni pagine - Parte 2 #  In questa pagina viene riportata la porzione di codice python che realizza la seconda parte del task, vale a dire lettura (e fruizione) dei documenti json da parte di un Kafka Consumer che provvede al loro caricamento sulla collezione MongoDB page_info (facente sempre parte del DB wikitrend).
+Installazione librerie necessarie #  pip install kafka-python Collegamento a MongoDB #  Nel chunk qui sotto, come da prassi, dapprima avviene il collegamento alla piattaforma mongodbatlas, successivamente viene inizializzata la nuova collezione di output, page_info, che ospiterà i documenti contenenti le info delle pagine wiki.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Parte 2" />
+<meta property="og:description" content="Informazioni pagine - Parte 2 #  In questa pagina viene riportata la porzione di codice python che realizza la seconda parte del task, vale a dire lettura (e fruizione) dei documenti json da parte di un Kafka Consumer che provvede al loro caricamento sulla collezione MongoDB page_info (facente sempre parte del DB wikitrend).
+Installazione librerie necessarie #  pip install kafka-python Collegamento a MongoDB #  Nel chunk qui sotto, come da prassi, dapprima avviene il collegamento alla piattaforma mongodbatlas, successivamente viene inizializzata la nuova collezione di output, page_info, che ospiterà i documenti contenenti le info delle pagine wiki." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte2/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Parte 2 | Wikitrend</title>
+<link rel="manifest" href="https://riccardorubini98.github.io/wikitrend_site/manifest.json">
+<link rel="icon" href="https://riccardorubini98.github.io/wikitrend_site/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://riccardorubini98.github.io/wikitrend_site/book.min.e935e20bd0d469378cb482f0958edf258c731a4f895dccd55799c6fbc8043f23.css" integrity="sha256-6TXiC9DUaTeMtILwlY7fJYxzGk&#43;JXczVV5nG&#43;8gEPyM="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://riccardorubini98.github.io/wikitrend_site/"><img src="https://riccardorubini98.github.io/wikitrend_site/wikitrend_logo.svg" alt="Logo" /><span>Wikitrend</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Data Management</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/data_structure/" class="">Dati</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/top_pages/" class="">Articoli più cercati per mese</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-67d9e14beb5c9195b060ad752f05072e" class="toggle"  />
+    <label for="section-67d9e14beb5c9195b060ad752f05072e" class="flex justify-between">
+      <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/" class="">Classificazione pagine</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/classifier_code/" class="">Codice Classificatore</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/class_accuracy/" class="">Valutazione Classificatore</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/page_description/" class="">Descrizione pagine</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ae33f183980c9a2e4beabca41a891594" class="toggle" checked />
+    <label for="section-ae33f183980c9a2e4beabca41a891594" class="flex justify-between">
+      <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/" class="">Informazioni pagine</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte1/" class="">Parte 1</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte2/" class=" active">Parte 2</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Data Visualization</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/trend_viz/" class="">Infografica 1</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/scatterplot_viz/" class="">Infografica 2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/assessesment/" class="">Valutazione visualizzazioni</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/conclusion/" class="">Conclusioni</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://riccardorubini98.github.io/wikitrend_site/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Parte 2</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://riccardorubini98.github.io/wikitrend_site/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#informazioni-pagine---parte-2"><strong>Informazioni pagine - Parte 2</strong></a>
+      <ul>
+        <li><a href="#installazione-librerie-necessarie"><strong>Installazione librerie necessarie</strong></a></li>
+        <li><a href="#collegamento-a-mongodb"><strong>Collegamento a MongoDB</strong></a></li>
+        <li><a href="#inizializzazione-kafka-consumer"><strong>Inizializzazione Kafka Consumer</strong></a></li>
+        <li><a href="#lettura-dei-messaggi-e-caricamento-su-mongodb"><strong>Lettura dei messaggi e caricamento su MongoDB</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="informazioni-pagine---parte-2">
+  <strong>Informazioni pagine - Parte 2</strong>
+  <a class="anchor" href="#informazioni-pagine---parte-2">#</a>
+</h1>
+<p>In questa pagina viene riportata la porzione di codice python che realizza la seconda parte del task, vale a dire lettura (e fruizione) dei documenti json da parte di un Kafka Consumer che provvede al loro caricamento sulla collezione MongoDB <em>page_info</em> (facente sempre parte del DB <em>wikitrend</em>).</p>
+<h2 id="installazione-librerie-necessarie">
+  <strong>Installazione librerie necessarie</strong>
+  <a class="anchor" href="#installazione-librerie-necessarie">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pip install kafka<span style="color:#f92672">-</span>python
+</code></pre></div><h2 id="collegamento-a-mongodb">
+  <strong>Collegamento a MongoDB</strong>
+  <a class="anchor" href="#collegamento-a-mongodb">#</a>
+</h2>
+<p>Nel chunk qui sotto, come da prassi, dapprima avviene il collegamento alla piattaforma <em>mongodbatlas</em>, successivamente viene inizializzata la nuova collezione di output, <em>page_info</em>, che ospiterà i documenti contenenti le info delle pagine wiki.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> pymongo <span style="color:#f92672">import</span> MongoClient
+client <span style="color:#f92672">=</span> MongoClient(<span style="color:#e6db74">&#34;&#34;</span>)
+<span style="color:#75715e"># Select DataBase</span>
+db <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_database(<span style="color:#e6db74">&#39;wikitrend&#39;</span>)
+<span style="color:#75715e"># Initialize output collection</span>
+info_pages <span style="color:#f92672">=</span> db<span style="color:#f92672">.</span>page_info
+</code></pre></div><h2 id="inizializzazione-kafka-consumer">
+  <strong>Inizializzazione Kafka Consumer</strong>
+  <a class="anchor" href="#inizializzazione-kafka-consumer">#</a>
+</h2>
+<p>Nel codice sottostante viene inizializzato un nuovo Kafka Consumer, il quale poi si iscrive al topic <em>trial</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> kafka <span style="color:#f92672">import</span> KafkaConsumer
+<span style="color:#f92672">import</span> json
+
+consumer <span style="color:#f92672">=</span> KafkaConsumer(
+  bootstrap_servers<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;kafka:9092&#39;</span>],
+  auto_offset_reset<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;latest&#39;</span>,
+  value_deserializer<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> v: json<span style="color:#f92672">.</span>loads(v<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;utf-8&#39;</span>)))
+
+consumer<span style="color:#f92672">.</span>subscribe([<span style="color:#e6db74">&#39;trial&#39;</span>])
+</code></pre></div><h2 id="lettura-dei-messaggi-e-caricamento-su-mongodb">
+  <strong>Lettura dei messaggi e caricamento su MongoDB</strong>
+  <a class="anchor" href="#lettura-dei-messaggi-e-caricamento-su-mongodb">#</a>
+</h2>
+<p>Nel codice sotto riportato il Consumer legge i messaggi che vengono inseriti nel topic <em>trial</em> (ovvero, i documenti json), in seguito provvede al loro caricamento nella collezione Mongo <em>info_pages</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> msg <span style="color:#f92672">in</span> consumer:
+    data <span style="color:#f92672">=</span> msg<span style="color:#f92672">.</span>value
+    info_pages<span style="color:#f92672">.</span>insert_one(data)
+</code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#informazioni-pagine---parte-2"><strong>Informazioni pagine - Parte 2</strong></a>
+      <ul>
+        <li><a href="#installazione-librerie-necessarie"><strong>Installazione librerie necessarie</strong></a></li>
+        <li><a href="#collegamento-a-mongodb"><strong>Collegamento a MongoDB</strong></a></li>
+        <li><a href="#inizializzazione-kafka-consumer"><strong>Inizializzazione Kafka Consumer</strong></a></li>
+        <li><a href="#lettura-dei-messaggi-e-caricamento-su-mongodb"><strong>Lettura dei messaggi e caricamento su MongoDB</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

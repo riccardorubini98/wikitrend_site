@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Informazioni pagine on Wikitrend</title>
+    <link>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/</link>
+    <description>Recent content in Informazioni pagine on Wikitrend</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Parte 1</title>
+      <link>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte1/</guid>
+      <description>Informazioni pagine - Parte 2 #  In questa pagina viene presentato il codice python che si è reso necessario per portare a termine la prima parte del task, vale a dire l&amp;rsquo;ottenimento dei dati di interesse (per ogni pagina wiki), realizzazione dei rispettivi documenti json e la loro immissione sulla coda Kafka ad opera di un Kafka Producer. Sotto sono riportati i vari passi della procedura.
+Installazione delle librerie necessarie #  pip install pymongo[srv] pip install aiohttp pip install asyncio pip install async_retrying pip install kafka-python Collegamento a MongoDB #  Nel chunk sottostante avviene dapprima il collegamento alla piattaforma mongodbatlas; successivamente, si realizza l&amp;rsquo;accesso al database wikitrend ed infine alla collezione di interesse, page_topic, istanziata col nome input.</description>
+    </item>
+    
+    <item>
+      <title>Parte 2</title>
+      <link>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte2/</guid>
+      <description>Informazioni pagine - Parte 2 #  In questa pagina viene riportata la porzione di codice python che realizza la seconda parte del task, vale a dire lettura (e fruizione) dei documenti json da parte di un Kafka Consumer che provvede al loro caricamento sulla collezione MongoDB page_info (facente sempre parte del DB wikitrend).
+Installazione librerie necessarie #  pip install kafka-python Collegamento a MongoDB #  Nel chunk qui sotto, come da prassi, dapprima avviene il collegamento alla piattaforma mongodbatlas, successivamente viene inizializzata la nuova collezione di output, page_info, che ospiterà i documenti contenenti le info delle pagine wiki.</description>
+    </item>
+    
+  </channel>
+</rss>

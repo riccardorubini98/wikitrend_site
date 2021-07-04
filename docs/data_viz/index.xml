@@ -11,7 +11,16 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/trend_viz/</guid>
-      <description>Infografica sui trend di ricerca #  Panoramica generale #  Il primo obiettivo che si è voluto affrontare in questo progetto è stato quello della creazione di un&amp;rsquo;infografica atta all&amp;rsquo;analisi del comportamento e dei trend di ricerca degli utenti della Wikipedia in lingua inglese. I dati dai quali si è partiti per costruire la visualizzazione sono stati le 500 pagine più viste sulla piattaforma per mese nel periodo 2016-2020, alle quali si sono aggiunte anche le singole pagine con più visualizzazioni per ogni giorno.</description>
+      <description>Infografica 1 #  Panoramica generale #  Il primo obiettivo che si è voluto affrontare in questo progetto è stato quello della creazione di un&amp;rsquo;infografica atta all&amp;rsquo;analisi del comportamento e dei trend di ricerca degli utenti della Wikipedia in lingua inglese. I dati dai quali si è partiti per costruire la visualizzazione sono stati le 500 pagine più viste sulla piattaforma per mese nel periodo 2016-2020, alle quali si sono aggiunte anche le singole pagine con più visualizzazioni per ogni giorno.</description>
+    </item>
+    
+    <item>
+      <title>Infografica 2</title>
+      <link>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/scatterplot_viz/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/scatterplot_viz/</guid>
+      <description>Infografica 2 #  Panoramica generale #  Il secondo aspetto che ci si è proposti di valutare ha riguardato la possibile esistenza di una correlazione positiva tra il numero medio di visualizzazioni e il numero medio di modifiche delle pagine di Wikipedia più consultate nell&amp;rsquo;arco temporale considerato (2016-2020). Inoltre, si è ritenuto opportuno (e interessante) scavare più a fondo nella relazione segmentando le pagine rispetto alle categorie di appartenenza, e introducendo in qualche modo (come si vedrà in seguito) un nuovo segnale, ovvero l&amp;rsquo;ampiezza della pagina, &amp;ldquo;misurata&amp;rdquo; attraverso il numero totale di parole.</description>
     </item>
     
     <item>

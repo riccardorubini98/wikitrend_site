@@ -29,7 +29,26 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/trend_viz/</guid>
-      <description>Infografica sui trend di ricerca #  Panoramica generale #  Il primo obiettivo che si è voluto affrontare in questo progetto è stato quello della creazione di un&amp;rsquo;infografica atta all&amp;rsquo;analisi del comportamento e dei trend di ricerca degli utenti della Wikipedia in lingua inglese. I dati dai quali si è partiti per costruire la visualizzazione sono stati le 500 pagine più viste sulla piattaforma per mese nel periodo 2016-2020, alle quali si sono aggiunte anche le singole pagine con più visualizzazioni per ogni giorno.</description>
+      <description>Infografica 1 #  Panoramica generale #  Il primo obiettivo che si è voluto affrontare in questo progetto è stato quello della creazione di un&amp;rsquo;infografica atta all&amp;rsquo;analisi del comportamento e dei trend di ricerca degli utenti della Wikipedia in lingua inglese. I dati dai quali si è partiti per costruire la visualizzazione sono stati le 500 pagine più viste sulla piattaforma per mese nel periodo 2016-2020, alle quali si sono aggiunte anche le singole pagine con più visualizzazioni per ogni giorno.</description>
+    </item>
+    
+    <item>
+      <title>Infografica 2</title>
+      <link>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/scatterplot_viz/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/scatterplot_viz/</guid>
+      <description>Infografica 2 #  Panoramica generale #  Il secondo aspetto che ci si è proposti di valutare ha riguardato la possibile esistenza di una correlazione positiva tra il numero medio di visualizzazioni e il numero medio di modifiche delle pagine di Wikipedia più consultate nell&amp;rsquo;arco temporale considerato (2016-2020). Inoltre, si è ritenuto opportuno (e interessante) scavare più a fondo nella relazione segmentando le pagine rispetto alle categorie di appartenenza, e introducendo in qualche modo (come si vedrà in seguito) un nuovo segnale, ovvero l&amp;rsquo;ampiezza della pagina, &amp;ldquo;misurata&amp;rdquo; attraverso il numero totale di parole.</description>
+    </item>
+    
+    <item>
+      <title>Valutazione visualizzazioni</title>
+      <link>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/assessesment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/assessesment/</guid>
+      <description>Valutazione visualizzazioni #  Le due infografiche sono state valutate in tre differenti passaggi, i quali hanno dato importanti indicazioni riguardo qualità, efficacia, efficienza e possibilità di miglioramento delle visualizzazioni.
+Valutazione euristica #  La prima valutazione fatta sulle due infografiche è stata quella euristica. Si sono selezioni 4 utenti, i quali hanno interagito liberamente con le visualizzazioni, commentando ad alta voce ogni loro azione e ogni loro perplessità/difficoltà incontrata. Da questi commenti sono emersi sostanzialmente due punti:</description>
     </item>
     
     <item>
@@ -44,16 +63,6 @@ Codice Python #  Importo librerie necessarie.</description>
     </item>
     
     <item>
-      <title>Valutazione visualizzazioni</title>
-      <link>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/assessesment/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/assessesment/</guid>
-      <description>Valutazione visualizzazioni #  Le due infografiche sono state valutate in tre differenti passaggi, i quali hanno dato importanti indicazioni riguardo qualità, efficacia, efficienza e possibilità di miglioramento delle visualizzazioni.
-Valutazione euristica #  La prima valutazione fatta sulle due infografiche è stata quella euristica. Si sono selezioni 4 utenti, i quali hanno interagito liberamente con le visualizzazioni, commentando ad alta voce ogni loro azione e ogni loro perplessità/difficoltà incontrata. Da questi commenti sono emersi sostanzialmente due punti:</description>
-    </item>
-    
-    <item>
       <title>Conclusioni</title>
       <link>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/conclusion/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -61,6 +70,26 @@ Valutazione euristica #  La prima valutazione fatta sulle due infografiche è st
       <guid>https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/conclusion/</guid>
       <description>Conclusioni progetto #  Domanda 1 - Trend di ricerca #  Dallo studio della prima infografica si possono trarre alcune conclusioni di natura generale:
  La categoria più ricercata nei vari mesi è quella relativa al mondo dell&amp;rsquo;arte e dell&amp;rsquo;intrattenimento, trainata principalmente dalle pagine riguardanti film, serie tv e personaggi dello spettacolo. Si è specialmente notato come tra le prime posizioni delle pagine più viste per mese finiscano quasi sempre almeno due o tre pagine inerenti ai film più importanti in sala e serie tv appena rilasciate, probabilmente per il fatto che gli utenti cerchino informazioni per scegliere se vedere quel determinato prodotto o soddisfare curiosità (ad es.</description>
+    </item>
+    
+    <item>
+      <title>Parte 1</title>
+      <link>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte1/</guid>
+      <description>Informazioni pagine - Parte 2 #  In questa pagina viene presentato il codice python che si è reso necessario per portare a termine la prima parte del task, vale a dire l&amp;rsquo;ottenimento dei dati di interesse (per ogni pagina wiki), realizzazione dei rispettivi documenti json e la loro immissione sulla coda Kafka ad opera di un Kafka Producer. Sotto sono riportati i vari passi della procedura.
+Installazione delle librerie necessarie #  pip install pymongo[srv] pip install aiohttp pip install asyncio pip install async_retrying pip install kafka-python Collegamento a MongoDB #  Nel chunk sottostante avviene dapprima il collegamento alla piattaforma mongodbatlas; successivamente, si realizza l&amp;rsquo;accesso al database wikitrend ed infine alla collezione di interesse, page_topic, istanziata col nome input.</description>
+    </item>
+    
+    <item>
+      <title>Parte 2</title>
+      <link>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte2/</guid>
+      <description>Informazioni pagine - Parte 2 #  In questa pagina viene riportata la porzione di codice python che realizza la seconda parte del task, vale a dire lettura (e fruizione) dei documenti json da parte di un Kafka Consumer che provvede al loro caricamento sulla collezione MongoDB page_info (facente sempre parte del DB wikitrend).
+Installazione librerie necessarie #  pip install kafka-python Collegamento a MongoDB #  Nel chunk qui sotto, come da prassi, dapprima avviene il collegamento alla piattaforma mongodbatlas, successivamente viene inizializzata la nuova collezione di output, page_info, che ospiterà i documenti contenenti le info delle pagine wiki.</description>
     </item>
     
     <item>

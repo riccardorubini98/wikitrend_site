@@ -5,16 +5,16 @@
   <meta name="generator" content="Hugo 0.84.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Data Management" />
+<meta name="description" content="Informazioni pagine #  Una volta realizzata la collezione page_topic, in cui ciascuna pagina wiki è rappresentata da un documento contenente, tra l&rsquo;altro, categoria di appartenenza e breve descrizione, l&rsquo;obiettivo è quello di realizzare una nuova collezione (denominata page_info), in cui condensare varie informazioni di interesse riguardanti ciascuna pagina. La struttura della collezione non varia: essa prevederà la presenza di un documento per ogni pagina il cui identificativo coincide con il rispetttivo documento della collezione page_topic.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Informazioni pagine" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/" />
+<meta property="og:url" content="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/" />
 
-<title>Data Management | Wikitrend</title>
+<title>Informazioni pagine | Wikitrend</title>
 <link rel="manifest" href="https://riccardorubini98.github.io/wikitrend_site/manifest.json">
 <link rel="icon" href="https://riccardorubini98.github.io/wikitrend_site/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="https://riccardorubini98.github.io/wikitrend_site/book.min.e935e20bd0d469378cb482f0958edf258c731a4f895dccd55799c6fbc8043f23.css" integrity="sha256-6TXiC9DUaTeMtILwlY7fJYxzGk&#43;JXczVV5nG&#43;8gEPyM="><link rel="alternate" type="application/rss+xml" href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/index.xml" title="Wikitrend" />
+<link rel="stylesheet" href="https://riccardorubini98.github.io/wikitrend_site/book.min.e935e20bd0d469378cb482f0958edf258c731a4f895dccd55799c6fbc8043f23.css" integrity="sha256-6TXiC9DUaTeMtILwlY7fJYxzGk&#43;JXczVV5nG&#43;8gEPyM="><link rel="alternate" type="application/rss+xml" href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/index.xml" title="Wikitrend" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -161,9 +161,9 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-ae33f183980c9a2e4beabca41a891594" class="toggle"  />
+    <input type="checkbox" id="section-ae33f183980c9a2e4beabca41a891594" class="toggle" checked />
     <label for="section-ae33f183980c9a2e4beabca41a891594" class="flex justify-between">
-      <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/" class="">Informazioni pagine</a>
+      <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/" class="active">Informazioni pagine</a>
       <span>▾</span>
     </label>
   
@@ -313,7 +313,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="https://riccardorubini98.github.io/wikitrend_site/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Data Management</strong>
+  <strong>Informazioni pagine</strong>
 
   <label for="toc-control">
     
@@ -327,7 +327,11 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#informazioni-pagine"><strong>Informazioni pagine</strong></a></li>
+  </ul>
+</nav>
 
 
 
@@ -338,7 +342,21 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"></article>
+  <article class="markdown"><h1 id="informazioni-pagine">
+  <strong>Informazioni pagine</strong>
+  <a class="anchor" href="#informazioni-pagine">#</a>
+</h1>
+<p>Una volta realizzata la collezione <strong>page_topic</strong>, in cui ciascuna pagina wiki è rappresentata da un documento contenente, tra l&rsquo;altro, categoria di appartenenza e breve descrizione, l&rsquo;obiettivo è quello di realizzare una nuova collezione (denominata <strong>page_info</strong>), in cui condensare varie informazioni di interesse riguardanti ciascuna pagina. La struttura della collezione non varia: essa prevederà la presenza di un documento per ogni pagina il cui identificativo coincide con il rispetttivo documento della collezione <em>page_topic</em>. Le tipologie di informazioni che verranno inglobate nei documenti sono le seguenti:</p>
+<ul>
+<li>media mensile delle visualizzazioni;</li>
+<li>media mensile delle revisioni (o modifiche);</li>
+<li>numero totale di parole;</li>
+<li>anno di creazione;</li>
+<li>nome della pagina (banale);</li>
+<li>codice identificativo (banale).</li>
+</ul>
+<p>Per il reperimento dei dati necessari, a partire dai quali verranno ricavate le tipologie di informazione sopra elencate, bisognerà fare richiesta a vari endpoints relativi a due APIs: <em>Wikimedia</em> e <em>Xtools</em>. I vari passi del processo sono riportati nelle due pagine seguenti: <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte1/">parte 1</a> e <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte2/">parte 2</a>. Prima di proseguire è doveroso puntualizzare alcuni aspetti. Innanzitutto, da un punto di vista procedurale, il task d&rsquo;interesse prevede che i vari documenti, una volta realizzati, vengano sottoposti alla tecnologia di Apache Kafka; detto in breve, Kafka è un sistema di &ldquo;messaggistica&rdquo; di tipo publish-suscribe distribuito in cui i messaggi (generiche strutture dati, nel nostro caso i documenti) vengono immessi e mantenuti in &ldquo;sezioni&rdquo; denominati <em>topics</em>. L&rsquo;ecosistema Kafka, oltre ai topics, prevede altri due attori principali: i <em>producers</em>, che sono responsabili dell&rsquo;inserimento dei messaggi in specifici topics, e i <em>consumers</em>, i quali fruiscono dei messagi previa iscrizione ad un topic. Nel nostro caso, verrà realizzato un producer adibito all&rsquo;immissione dei documenti in uno specifico topic (chiamato <em>trial</em>), i quali verranno letti da un consumer che provvederà al loro inserimento nella collezione di output <em>page_info</em>. Per maggiori informazioni riguardo al sistema kafka e le sue logiche sottostanti viene proposto il seguente <a href="https://kafka.apache.org/intro">link</a>. Infine, una puntualizzazione di carattere operativo: per il calcolo della media di visualizzazioni e revisioni mensili, i dati grezzi di input (provenienti da differenti endpoints di <em>wikimedia</em>) sono disponibili a partire dal mese di luglio dell&rsquo;anno 2015. A questo punto le implicazioni sono chiare: le medie in uscita saranno affette da questo difetto congenito al quale, purtroppo, non vi si può porre rimedio.</p>
+</article>
  
       
 
@@ -358,6 +376,10 @@ https://github.com/alex-shpak/hugo-book
 
       
   
+  <div class="book-comments">
+
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -368,7 +390,11 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#informazioni-pagine"><strong>Informazioni pagine</strong></a></li>
+  </ul>
+</nav>
 
 
  

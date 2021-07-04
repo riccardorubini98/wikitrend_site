@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.84.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Informazioni pagine - Parte 2 #  In questa pagina viene presentato il codice python che si è reso necessario per portare a termine la prima parte del task, vale a dire l&rsquo;ottenimento dei dati di interesse (per ogni pagina wiki), realizzazione dei rispettivi documenti json e la loro immissione sulla coda Kafka ad opera di un Kafka Producer. Sotto sono riportati i vari passi della procedura.
+Installazione delle librerie necessarie #  pip install pymongo[srv] pip install aiohttp pip install asyncio pip install async_retrying pip install kafka-python Collegamento a MongoDB #  Nel chunk sottostante avviene dapprima il collegamento alla piattaforma mongodbatlas; successivamente, si realizza l&rsquo;accesso al database wikitrend ed infine alla collezione di interesse, page_topic, istanziata col nome input.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Parte 1" />
+<meta property="og:description" content="Informazioni pagine - Parte 2 #  In questa pagina viene presentato il codice python che si è reso necessario per portare a termine la prima parte del task, vale a dire l&rsquo;ottenimento dei dati di interesse (per ogni pagina wiki), realizzazione dei rispettivi documenti json e la loro immissione sulla coda Kafka ad opera di un Kafka Producer. Sotto sono riportati i vari passi della procedura.
+Installazione delle librerie necessarie #  pip install pymongo[srv] pip install aiohttp pip install asyncio pip install async_retrying pip install kafka-python Collegamento a MongoDB #  Nel chunk sottostante avviene dapprima il collegamento alla piattaforma mongodbatlas; successivamente, si realizza l&rsquo;accesso al database wikitrend ed infine alla collezione di interesse, page_topic, istanziata col nome input." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte1/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Parte 1 | Wikitrend</title>
+<link rel="manifest" href="https://riccardorubini98.github.io/wikitrend_site/manifest.json">
+<link rel="icon" href="https://riccardorubini98.github.io/wikitrend_site/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://riccardorubini98.github.io/wikitrend_site/book.min.e935e20bd0d469378cb482f0958edf258c731a4f895dccd55799c6fbc8043f23.css" integrity="sha256-6TXiC9DUaTeMtILwlY7fJYxzGk&#43;JXczVV5nG&#43;8gEPyM="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://riccardorubini98.github.io/wikitrend_site/"><img src="https://riccardorubini98.github.io/wikitrend_site/wikitrend_logo.svg" alt="Logo" /><span>Wikitrend</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Data Management</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/data_structure/" class="">Dati</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/top_pages/" class="">Articoli più cercati per mese</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-67d9e14beb5c9195b060ad752f05072e" class="toggle"  />
+    <label for="section-67d9e14beb5c9195b060ad752f05072e" class="flex justify-between">
+      <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/" class="">Classificazione pagine</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/classifier_code/" class="">Codice Classificatore</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/category/class_accuracy/" class="">Valutazione Classificatore</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/page_description/" class="">Descrizione pagine</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ae33f183980c9a2e4beabca41a891594" class="toggle" checked />
+    <label for="section-ae33f183980c9a2e4beabca41a891594" class="flex justify-between">
+      <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/" class="">Informazioni pagine</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte1/" class=" active">Parte 1</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/doc_project/info_pages/info_pagine_parte2/" class="">Parte 2</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Data Visualization</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/trend_viz/" class="">Infografica 1</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/scatterplot_viz/" class="">Infografica 2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/assessesment/" class="">Valutazione visualizzazioni</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://riccardorubini98.github.io/wikitrend_site/docs/data_viz/conclusion/" class="">Conclusioni</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://riccardorubini98.github.io/wikitrend_site/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Parte 1</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://riccardorubini98.github.io/wikitrend_site/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#informazioni-pagine---parte-2"><strong>Informazioni pagine - Parte 2</strong></a>
+      <ul>
+        <li><a href="#installazione-delle-librerie-necessarie"><strong>Installazione delle librerie necessarie</strong></a></li>
+        <li><a href="#collegamento-a-mongodb"><strong>Collegamento a MongoDB</strong></a></li>
+        <li><a href="#presentazione-di-due-funzioni-utili"><strong>Presentazione di due funzioni utili</strong></a></li>
+        <li><a href="#inizializzazione-kafka-producer"><strong>Inizializzazione Kafka Producer</strong></a></li>
+        <li><a href="#download-dei-dati-di-interesse-e-scrittura-su-kafka"><strong>Download dei dati di interesse e scrittura su Kafka</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="informazioni-pagine---parte-2">
+  <strong>Informazioni pagine - Parte 2</strong>
+  <a class="anchor" href="#informazioni-pagine---parte-2">#</a>
+</h1>
+<p>In questa pagina viene presentato il codice python che si è reso necessario per portare a termine la prima parte del task, vale a dire l&rsquo;ottenimento dei dati di interesse (per ogni pagina wiki), realizzazione dei rispettivi documenti json e la loro immissione sulla coda Kafka ad opera di un Kafka Producer. Sotto sono riportati i vari passi della procedura.</p>
+<h2 id="installazione-delle-librerie-necessarie">
+  <strong>Installazione delle librerie necessarie</strong>
+  <a class="anchor" href="#installazione-delle-librerie-necessarie">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pip install pymongo[srv]
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pip install aiohttp
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pip install asyncio
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pip install async_retrying
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pip install kafka<span style="color:#f92672">-</span>python
+</code></pre></div><h2 id="collegamento-a-mongodb">
+  <strong>Collegamento a MongoDB</strong>
+  <a class="anchor" href="#collegamento-a-mongodb">#</a>
+</h2>
+<p>Nel chunk sottostante avviene  dapprima il collegamento alla piattaforma <em>mongodbatlas</em>; successivamente, si realizza l&rsquo;accesso al database <em>wikitrend</em> ed infine alla collezione di interesse, <em>page_topic</em>, istanziata col nome <em>input</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> pymongo <span style="color:#f92672">import</span> MongoClient
+client <span style="color:#f92672">=</span> MongoClient(<span style="color:#e6db74">&#34;&#34;</span>)
+<span style="color:#75715e"># DB selection</span>
+db <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_database(<span style="color:#e6db74">&#39;wikitrend&#39;</span>)
+<span style="color:#75715e"># Selection of input collection</span>
+input <span style="color:#f92672">=</span> db<span style="color:#f92672">.</span>page_topic
+</code></pre></div><h2 id="presentazione-di-due-funzioni-utili">
+  <strong>Presentazione di due funzioni utili</strong>
+  <a class="anchor" href="#presentazione-di-due-funzioni-utili">#</a>
+</h2>
+<p>Nei successivi due chunk vengono presentate due funzioni che risultano particolarmente utili per il compimento del task d&rsquo;interesse.</p>
+<p>La funzione sottostante riceve in input (sottoforma di stringa) il nome di una pagina wiki, e restituisce in output una lista di nove urls relativi ad altrettanti endpoints a cui si dovrà fare richiesta successivamente. Come già accennato, sette di questi sono relativi all&rsquo;API di <em>wikimedia</em> (accessibile al seguente <a href="https://wikimedia.org/api/rest_v1/#/">link</a>), mentre i restanti fanno riferimento all&rsquo;API di <em>xtools</em> (accessibile al seguente <a href="https://xtools.readthedocs.io/en/3.1.41/api/index.html">link</a>).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> urllib.parse
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_urls</span>(page_name):
+  l<span style="color:#f92672">=</span>[]
+  years <span style="color:#f92672">=</span> [(<span style="color:#e6db74">&#39;20150701&#39;</span>,<span style="color:#e6db74">&#39;20151231&#39;</span>),(<span style="color:#e6db74">&#39;20160101&#39;</span>,<span style="color:#e6db74">&#39;20161231&#39;</span>),(<span style="color:#e6db74">&#39;20170101&#39;</span>,<span style="color:#e6db74">&#39;20171231&#39;</span>),(<span style="color:#e6db74">&#39;20180101&#39;</span>,<span style="color:#e6db74">&#39;20181231&#39;</span>),
+          (<span style="color:#e6db74">&#39;20190101&#39;</span>,<span style="color:#e6db74">&#39;20191231&#39;</span>),(<span style="color:#e6db74">&#39;20200101&#39;</span>,<span style="color:#e6db74">&#39;20201231&#39;</span>)]
+  <span style="color:#66d9ef">for</span> year <span style="color:#f92672">in</span> years:
+    url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://wikimedia.org/api/rest_v1/metrics/edits/per-page/en.wikipedia/&#39;</span><span style="color:#f92672">+</span>urllib<span style="color:#f92672">.</span>parse<span style="color:#f92672">.</span>quote(page_name, safe<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;/all-editor-types/monthly/&#39;</span><span style="color:#f92672">+</span>year[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;/&#39;</span><span style="color:#f92672">+</span>year[<span style="color:#ae81ff">1</span>]
+    l<span style="color:#f92672">.</span>append(url)
+  
+  views <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia.org/all-access/all-agents/&#39;</span><span style="color:#f92672">+</span>urllib<span style="color:#f92672">.</span>parse<span style="color:#f92672">.</span>quote(page_name, safe<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;/monthly/20150701/20201231&#39;</span>
+  prose <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://xtools.wmflabs.org/api/page/prose/en.wikipedia.org/&#39;</span><span style="color:#f92672">+</span>urllib<span style="color:#f92672">.</span>parse<span style="color:#f92672">.</span>quote(page_name, safe<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>)
+  creation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://xtools.wmflabs.org/api/page/articleinfo/en.wikipedia.org/&#39;</span><span style="color:#f92672">+</span>urllib<span style="color:#f92672">.</span>parse<span style="color:#f92672">.</span>quote(page_name, safe<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>)
+
+  l<span style="color:#f92672">.</span>append(views)
+  l<span style="color:#f92672">.</span>append(prose)
+  l<span style="color:#f92672">.</span>append(creation)
+  <span style="color:#66d9ef">return</span> l <span style="color:#75715e">#ouptut: list of 9 urls given a page name</span>
+</code></pre></div><p>La funzione sottostante (<em>get_dict</em>) riceve in input la lista di dizionari, li tratta opportunamente e restituisce in output il dizionario definitivo, contenente le info relative ad una specifica pagina wiki, il quale verrà poi immesso sulla coda Kafka da un Kafka Producer (vedi codice sotto). I dizionari di partenza sono assimilabili alle materie prime dalle quali, mediante un processo di lavorazione (la funzione <em>get_dict</em>), viene realizzato il prodotto finito (ovvero, il dizionario definitivo).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_dict</span>(data):
+  n_views <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+  n_edits <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+  months_views <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+  months_edits <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+  diz <span style="color:#f92672">=</span> {}
+  <span style="color:#66d9ef">for</span> d <span style="color:#f92672">in</span> data:
+    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;created_at&#39;</span> <span style="color:#f92672">in</span> d:
+      date_of_creation <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>strptime(d[<span style="color:#e6db74">&#39;created_at&#39;</span>], <span style="color:#e6db74">&#39;%Y-%m-</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#39;</span>) <span style="color:#75715e"># catch the date of creation</span>
+  <span style="color:#66d9ef">for</span> d <span style="color:#f92672">in</span> data: 
+    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;items&#39;</span> <span style="color:#f92672">in</span> d: 
+      <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;results&#39;</span> <span style="color:#f92672">in</span> d[<span style="color:#e6db74">&#39;items&#39;</span>][<span style="color:#ae81ff">0</span>]:
+        <span style="color:#66d9ef">for</span> el <span style="color:#f92672">in</span> d[<span style="color:#e6db74">&#39;items&#39;</span>][<span style="color:#ae81ff">0</span>][<span style="color:#e6db74">&#39;results&#39;</span>]:
+          date <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>strptime(el[<span style="color:#e6db74">&#39;timestamp&#39;</span>][:<span style="color:#ae81ff">10</span>], <span style="color:#e6db74">&#39;%Y-%m-</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#39;</span>) 
+          <span style="color:#66d9ef">if</span> date <span style="color:#f92672">&gt;</span> date_of_creation:
+            n_edits <span style="color:#f92672">+=</span> el[<span style="color:#e6db74">&#39;edits&#39;</span>]
+            months_edits <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            avg_edits <span style="color:#f92672">=</span> int(round(n_edits<span style="color:#f92672">/</span>months_edits))
+            diz[<span style="color:#e6db74">&#39;mean_edits&#39;</span>] <span style="color:#f92672">=</span> avg_edits
+      <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">for</span> el <span style="color:#f92672">in</span> d[<span style="color:#e6db74">&#39;items&#39;</span>]:
+          n_views <span style="color:#f92672">+=</span> el[<span style="color:#e6db74">&#39;views&#39;</span>]
+          months_views <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+          avg_views <span style="color:#f92672">=</span> int(round(n_views<span style="color:#f92672">/</span>months_views))
+          diz[<span style="color:#e6db74">&#39;mean_views&#39;</span>] <span style="color:#f92672">=</span> avg_views
+    <span style="color:#66d9ef">elif</span> <span style="color:#e6db74">&#39;words&#39;</span> <span style="color:#f92672">in</span> d:
+      diz[<span style="color:#e6db74">&#39;words&#39;</span>] <span style="color:#f92672">=</span> d[<span style="color:#e6db74">&#39;words&#39;</span>]
+    <span style="color:#66d9ef">elif</span> <span style="color:#e6db74">&#39;created_at&#39;</span> <span style="color:#f92672">in</span> d: 
+      diz[<span style="color:#e6db74">&#39;y_of_creation&#39;</span>] <span style="color:#f92672">=</span> d[<span style="color:#e6db74">&#39;created_at&#39;</span>]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;-&#39;</span>)[<span style="color:#ae81ff">0</span>]
+    <span style="color:#66d9ef">else</span>:
+      diz<span style="color:#f92672">.</span>update(d)
+  <span style="color:#66d9ef">return</span> diz
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> doc <span style="color:#f92672">in</span> input<span style="color:#f92672">.</span>find({<span style="color:#e6db74">&#39;article&#39;</span>:<span style="color:#e6db74">&#39;Al_Pacino&#39;</span>}):
+  d <span style="color:#f92672">=</span> {}
+  d[<span style="color:#e6db74">&#39;article&#39;</span>] <span style="color:#f92672">=</span> doc[<span style="color:#e6db74">&#39;article&#39;</span>]
+  d[<span style="color:#e6db74">&#39;_id&#39;</span>] <span style="color:#f92672">=</span> doc[<span style="color:#e6db74">&#39;_id&#39;</span>]
+  urls <span style="color:#f92672">=</span> get_urls(doc[<span style="color:#e6db74">&#39;article&#39;</span>])
+  l<span style="color:#f92672">=</span>[]
+  headers <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;User-Agent&#39;</span>: <span style="color:#e6db74">&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36&#39;</span>}
+  <span style="color:#f92672">import</span> requests
+  <span style="color:#66d9ef">for</span> url <span style="color:#f92672">in</span> urls:
+    <span style="color:#66d9ef">try</span>:
+      r <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, headers <span style="color:#f92672">=</span> headers)
+      r<span style="color:#f92672">.</span>raise_for_status()
+      data <span style="color:#f92672">=</span> r<span style="color:#f92672">.</span>json()
+      l<span style="color:#f92672">.</span>append(data)
+    <span style="color:#66d9ef">except</span> requests<span style="color:#f92672">.</span>exceptions<span style="color:#f92672">.</span>HTTPError <span style="color:#66d9ef">as</span> errh:
+      print (<span style="color:#e6db74">&#34;Http Error:&#34;</span>,errh)
+    <span style="color:#66d9ef">except</span> requests<span style="color:#f92672">.</span>exceptions<span style="color:#f92672">.</span>ConnectionError <span style="color:#66d9ef">as</span> errc:
+      print (<span style="color:#e6db74">&#34;Error Connecting:&#34;</span>,errc)
+    <span style="color:#66d9ef">except</span> requests<span style="color:#f92672">.</span>exceptions<span style="color:#f92672">.</span>Timeout <span style="color:#66d9ef">as</span> errt:
+      print (<span style="color:#e6db74">&#34;Timeout Error:&#34;</span>,errt)
+    <span style="color:#66d9ef">except</span> requests<span style="color:#f92672">.</span>exceptions<span style="color:#f92672">.</span>RequestException <span style="color:#66d9ef">as</span> err:
+      print (<span style="color:#e6db74">&#34;OOps: Something Else&#34;</span>,err)
+  l<span style="color:#f92672">.</span>append(d)
+
+diz <span style="color:#f92672">=</span> get_dict(l)
+print(diz)
+
+</code></pre></div><pre><code>{'mean_edits': 21, 'mean_views': 323061, 'words': 4482, 'y_of_creation': '2002', 'article': 'Al_Pacino', '_id': 41906}
+</code></pre>
+<p>Sopra è riportato un esempio di dizionario restituito dalla funzione get_dict e riferito alla pagina wiki &lsquo;Al_Pacino&rsquo;, contenente le varie informazioni di interesse.</p>
+<h2 id="inizializzazione-kafka-producer">
+  <strong>Inizializzazione Kafka Producer</strong>
+  <a class="anchor" href="#inizializzazione-kafka-producer">#</a>
+</h2>
+<p>Nel breve codice sottostante viene inizializzato un Kafka Producer, che successivamente sarà adibito alla scrittura dei dati sulla coda Kafka. Il dato in un input viene convertito in un file <em>json</em> e codificato in utf-8.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">producer <span style="color:#f92672">=</span> KafkaProducer(bootstrap_servers<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;kafka:9092&#39;</span>], <span style="color:#75715e"># This piece of code initializes a new Kafka Producer</span>
+                         value_serializer<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: 
+                         dumps(x)<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#39;utf-8&#39;</span>))
+</code></pre></div><h2 id="download-dei-dati-di-interesse-e-scrittura-su-kafka">
+  <strong>Download dei dati di interesse e scrittura su Kafka</strong>
+  <a class="anchor" href="#download-dei-dati-di-interesse-e-scrittura-su-kafka">#</a>
+</h2>
+<p>Nel codice sotto riportato viene realizzata una lista di liste che prende il nome di <em>tot_urls</em>. Ciascun elemento (lista) è associato ad una pagina wiki e contiene l&rsquo;elenco dei nove urls in aggiunta al dizionario contenente il nome dell&rsquo;articolo e il relativo id nella collezione mongo <em>page_topic</em>. Pertanto, la lunghezza della lista di liste è pari al numero di pagine. Un elemento della lista (riferito alla pagina wiki &lsquo;David_Bowie&rsquo;) è stampato in coda al codice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">tot_urls <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> doc <span style="color:#f92672">in</span> input<span style="color:#f92672">.</span>find():
+  d <span style="color:#f92672">=</span> {}
+  d[<span style="color:#e6db74">&#39;article&#39;</span>] <span style="color:#f92672">=</span> doc[<span style="color:#e6db74">&#39;article&#39;</span>]
+  d[<span style="color:#e6db74">&#39;_id&#39;</span>] <span style="color:#f92672">=</span> doc[<span style="color:#e6db74">&#39;_id&#39;</span>] <span style="color:#75715e"># the dict d contains informations about the name of the wiki page and its _id in the input collection &#39;page_topic&#39;</span>
+  urls <span style="color:#f92672">=</span> get_urls(doc[<span style="color:#e6db74">&#39;article&#39;</span>])<span style="color:#75715e"># the list of urls is created</span>
+  urls<span style="color:#f92672">.</span>append(d) <span style="color:#75715e">#little trick: append d to the list of urls. This will turn to be useful later</span>
+  tot_urls<span style="color:#f92672">.</span>append(urls)
+print(tot_urls[<span style="color:#ae81ff">0</span>])
+
+
+</code></pre></div><pre><code>['https://wikimedia.org/api/rest_v1/metrics/edits/per-page/en.wikipedia/David_Bowie/all-editor-types/monthly/20150701/20151231', 'https://wikimedia.org/api/rest_v1/metrics/edits/per-page/en.wikipedia/David_Bowie/all-editor-types/monthly/20160101/20161231', 'https://wikimedia.org/api/rest_v1/metrics/edits/per-page/en.wikipedia/David_Bowie/all-editor-types/monthly/20170101/20171231', 'https://wikimedia.org/api/rest_v1/metrics/edits/per-page/en.wikipedia/David_Bowie/all-editor-types/monthly/20180101/20181231', 'https://wikimedia.org/api/rest_v1/metrics/edits/per-page/en.wikipedia/David_Bowie/all-editor-types/monthly/20190101/20191231', 'https://wikimedia.org/api/rest_v1/metrics/edits/per-page/en.wikipedia/David_Bowie/all-editor-types/monthly/20200101/20201231', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia.org/all-access/all-agents/David_Bowie/monthly/20150701/20201231', 'https://xtools.wmflabs.org/api/page/prose/en.wikipedia.org/David_Bowie', 'https://xtools.wmflabs.org/api/page/articleinfo/en.wikipedia.org/David_Bowie', {'article': 'David_Bowie', '_id': 8786}]
+</code></pre>
+<p>Ora, il chunk sotto riportato costituisce il &ldquo;cuore&rdquo; del processo: la composizione delle tre funzioni <em>async</em> consente di effettuare le chiamate agli endpoints contenuti nella lista <em>tot_urls</em> in modalità completamente asincrona. Detto in brevi termini, ciò significa che le richieste (tasks) ai vari endpoints vengono effettuati simultaneamente e in maniera pressochè indipendente. In questo modo viene garantita una estrema efficienza riducendo notevolmente i tempi dell&rsquo;operazione (si tenga conto che, in presenza di 9235 pagine di wiki, il totale delle richieste da effettuare ammonta a 92535 X 9 = 83115 urls). Si osserva che nella seconda funzione (innestata poi nella terza), una volta che i tasks relativi ad una pagina wiki sono completati, il producer si adopera nella scrittura del dizionario restituito dalla funzione get_dict sulla coda Kafka. Tale struttura dati, come visto in precedenza, viene dapprima convertita in un file json codificato in utf-8, il quale successivamente viene immesso nel topic <em>trial</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> asyncio
+<span style="color:#f92672">import</span> aiohttp
+<span style="color:#f92672">from</span> async_retrying <span style="color:#f92672">import</span> retry
+<span style="color:#f92672">import</span> nest_asyncio
+nest_asyncio<span style="color:#f92672">.</span>apply()
+
+
+<span style="color:#75715e"># The composition of these three functions allows us to make a parallel request to the urls gained by the get_url function,</span>
+<span style="color:#75715e"># in order to save a lot of time during the extracting data process</span>
+
+<span style="color:#a6e22e">@retry</span>(attempts<span style="color:#f92672">=</span><span style="color:#ae81ff">5000</span>) <span style="color:#75715e">#number of attempts to get the result from each endpoint, high number to be conservative...</span>
+<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get</span>(url, session):
+  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>get(url) <span style="color:#66d9ef">as</span> resp:
+      resp<span style="color:#f92672">.</span>raise_for_status()
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> resp<span style="color:#f92672">.</span>json() <span style="color:#75715e">#This returns a json object of the result, basically a Python dictionary</span>
+
+<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fetch</span>(urls, producer):
+  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiohttp<span style="color:#f92672">.</span>ClientSession() <span style="color:#66d9ef">as</span> session:
+      tasks <span style="color:#f92672">=</span> [get(url, session) <span style="color:#66d9ef">for</span> url <span style="color:#f92672">in</span> urls[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]]
+      resp <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>gather(<span style="color:#f92672">*</span>tasks)
+      resp<span style="color:#f92672">.</span>append(urls[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
+      d <span style="color:#f92672">=</span> get_dict(resp) <span style="color:#75715e">#once the tasks of a wiki page are completed, the dict is created through the function &#39;get_dict&#39;</span>
+      producer<span style="color:#f92672">.</span>send(<span style="color:#e6db74">&#39;trial&#39;</span>, value <span style="color:#f92672">=</span> d)  <span style="color:#75715e">#producer sends the data to the topic trial</span>
+
+<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(tot_urls):
+  cors <span style="color:#f92672">=</span> [fetch(urls) <span style="color:#66d9ef">for</span> urls <span style="color:#f92672">in</span> tot_urls]
+  <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>gather(<span style="color:#f92672">*</span>cors)
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+  asyncio<span style="color:#f92672">.</span>run(main(tot_urls))
+</code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#informazioni-pagine---parte-2"><strong>Informazioni pagine - Parte 2</strong></a>
+      <ul>
+        <li><a href="#installazione-delle-librerie-necessarie"><strong>Installazione delle librerie necessarie</strong></a></li>
+        <li><a href="#collegamento-a-mongodb"><strong>Collegamento a MongoDB</strong></a></li>
+        <li><a href="#presentazione-di-due-funzioni-utili"><strong>Presentazione di due funzioni utili</strong></a></li>
+        <li><a href="#inizializzazione-kafka-producer"><strong>Inizializzazione Kafka Producer</strong></a></li>
+        <li><a href="#download-dei-dati-di-interesse-e-scrittura-su-kafka"><strong>Download dei dati di interesse e scrittura su Kafka</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
